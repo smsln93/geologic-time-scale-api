@@ -1,0 +1,505 @@
+[
+  {
+    "id": "mesozoic",
+    "name": "Mesozoic",
+    "rank": "Era",
+    "rank_order": 3,
+    "begin_time_ma": 252,
+    "begin_uncertainty_ma": 0.0,
+    "end_time_ma": 66,
+    "end_uncertainty_ma": 0.0,
+    "parent_id": "phanerozoic"
+  },
+
+  {
+    "id": "triassic",
+    "name": "Triassic",
+    "rank": "Period",
+    "rank_order": 4,
+    "begin_time_ma": 251.902,
+    "begin_uncertainty_ma": 0.024,
+    "end_time_ma": 201.4,
+    "end_uncertainty_ma": 0.2,
+    "parent_id": "mesozoic"
+  },
+
+  {
+    "id": "early-triassic",
+    "name": "Early Triassic",
+    "rank": "Epoch",
+    "rank_order": 5,
+    "begin_time_ma": 251.902,
+    "begin_uncertainty_ma": 0.024,
+    "end_time_ma": 246.7,
+    "end_uncertainty_ma": 0.0,
+    "parent_id": "triassic"
+  },
+
+  {
+    "id": "induan",
+    "name": "Induan",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 251.902,
+    "begin_uncertainty_ma": 0.024,
+    "end_time_ma": 249.9,
+    "end_uncertainty_ma": 0.0,
+    "parent_id": "early-triassic"
+  },
+
+  {
+    "id": "olenekian",
+    "name": "Olenekian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 249.9,
+    "begin_uncertainty_ma": 0.0,
+    "end_time_ma": 246.7,
+    "end_uncertainty_ma": 0.0,
+    "parent_id": "early-triassic"
+  },
+
+  {
+    "id": "middle-triassic",
+    "name": "Middle Triassic",
+    "rank": "Epoch",
+    "rank_order": 5,
+    "begin_time_ma": 246.7,
+    "begin_uncertainty_ma": 0.0,
+    "end_time_ma": 237,
+    "end_uncertainty_ma": 0.0,
+    "parent_id": "triassic"
+  },
+
+  {
+    "id": "anisian",
+    "name": "Anisian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 246.7,
+    "begin_uncertainty_ma": 0.0,
+    "end_time_ma": 241.464,
+    "end_uncertainty_ma": 0.28,
+    "parent_id": "middle-triassic"
+  },
+
+  {
+    "id": "ladinian",
+    "name": "Ladinian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 241.464,
+    "begin_uncertainty_ma": 0.28,
+    "end_time_ma": 237,
+    "end_uncertainty_ma": 0.0,
+    "parent_id": "middle-triassic"
+  },
+
+  {
+    "id": "late-triassic",
+    "name": "Late Triassic",
+    "rank": "Epoch",
+    "rank_order": 5,
+    "begin_time_ma": 237,
+    "begin_uncertainty_ma": 0.0,
+    "end_time_ma": 201.4,
+    "end_uncertainty_ma": 0.2,
+    "parent_id": "triassic"
+  },
+
+  {
+    "id": "carnian",
+    "name": "Carnian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 237,
+    "begin_uncertainty_ma": 0.0,
+    "end_time_ma": 227.3,
+    "end_uncertainty_ma": 0.0,
+    "parent_id": "late-triassic"
+  },
+
+  {
+    "id": "norian",
+    "name": "Norian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 227.3,
+    "begin_uncertainty_ma": 0.0,
+    "end_time_ma": 205.7,
+    "end_uncertainty_ma": 0.0,
+    "parent_id": "late-triassic"
+  },
+
+  {
+    "id": "rhaetian",
+    "name": "Rhaetian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 205.7,
+    "begin_uncertainty_ma": 0.0,
+    "end_time_ma": 201.4,
+    "end_uncertainty_ma": 0.2,
+    "parent_id": "late-triassic"
+  },
+
+  {
+    "id": "jurassic",
+    "name": "Jurassic",
+    "rank": "Period",
+    "rank_order": 4,
+    "begin_time_ma": 201.4,
+    "begin_uncertainty_ma": 0.2,
+    "end_time_ma": 143.1,
+    "end_uncertainty_ma": 0.6,
+    "parent_id": "mesozoic"
+  },
+
+  {
+    "id": "early-jurassic",
+    "name": "Early Jurassic",
+    "rank": "Epoch",
+    "rank_order": 5,
+    "begin_time_ma": 201.4,
+    "begin_uncertainty_ma": 0.2,
+    "end_time_ma": 199.5,
+    "end_uncertainty_ma": 0.3,
+    "parent_id": "jurassic"
+  },
+
+  {
+    "id": "hettangian",
+    "name": "Hettangian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 201.4,
+    "begin_uncertainty_ma": 0.2,
+    "end_time_ma": 199.5,
+    "end_uncertainty_ma": 0.3,
+    "parent_id": "early-jurassic"
+  },
+
+  {
+    "id": "sinemurian",
+    "name": "Sinemurian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 199.5,
+    "begin_uncertainty_ma": 0.3,
+    "end_time_ma": 192.9,
+    "end_uncertainty_ma": 0.3,
+    "parent_id": "early-jurassic"
+  },
+
+  {
+    "id": "pliensbachian",
+    "name": "Pliensbachian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 192.9,
+    "begin_uncertainty_ma": 0.3,
+    "end_time_ma": 184.2,
+    "end_uncertainty_ma": 0.3,
+    "parent_id": "early-jurassic"
+  },
+
+  {
+    "id": "toarcian",
+    "name": "Toarcian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 184.2,
+    "begin_uncertainty_ma": 0.3,
+    "end_time_ma": 174.7,
+    "end_uncertainty_ma": 0.8,
+    "parent_id": "early-jurassic"
+  },
+
+  {
+    "id": "middle-jurassic",
+    "name": "Middle Jurassic",
+    "rank": "Epoch",
+    "rank_order": 5,
+    "begin_time_ma": 174.7,
+    "begin_uncertainty_ma": 0.8,
+    "end_time_ma": 161.5,
+    "end_uncertainty_ma": 1.0,
+    "parent_id": "jurassic"
+  },
+
+  {
+    "id": "aalenian",
+    "name": "Aalenian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 174.7,
+    "begin_uncertainty_ma": 0.8,
+    "end_time_ma": 170.9,
+    "end_uncertainty_ma": 0.8,
+    "parent_id": "middle-jurassic"
+  },
+
+  {
+    "id": "bajocian",
+    "name": "Bajocian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 170.9,
+    "begin_uncertainty_ma": 0.8,
+    "end_time_ma": 168.2,
+    "end_uncertainty_ma": 1.2,
+    "parent_id": "middle-jurassic"
+  },
+
+  {
+    "id": "bathonian",
+    "name": "Bathonian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 168.2,
+    "begin_uncertainty_ma": 1.2,
+    "end_time_ma": 165.3,
+    "end_uncertainty_ma": 1.1,
+    "parent_id": "middle-jurassic"
+  },
+
+  {
+    "id": "callovian",
+    "name": "Callovian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 165.3,
+    "begin_uncertainty_ma": 1.1,
+    "end_time_ma": 161.5,
+    "end_uncertainty_ma": 1.0,
+    "parent_id": "middle-jurassic"
+  },
+
+  {
+    "id": "late-jurassic",
+    "name": "Late Jurassic",
+    "rank": "Epoch",
+    "rank_order": 5,
+    "begin_time_ma": 161.5,
+    "begin_uncertainty_ma": 1.0,
+    "end_time_ma": 143.1,
+    "end_uncertainty_ma": 0.6,
+    "parent_id": "jurassic"
+  },
+
+  {
+    "id": "oxfordian",
+    "name": "Oxfordian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 161.5,
+    "begin_uncertainty_ma": 1.0,
+    "end_time_ma": 154.8,
+    "end_uncertainty_ma": 0.8,
+    "parent_id": "late-jurassic"
+  },
+
+  {
+    "id": "kimmeridgian",
+    "name": "Kimmeridgian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 154.8,
+    "begin_uncertainty_ma": 0.8,
+    "end_time_ma": 149.2,
+    "end_uncertainty_ma": 0.7,
+    "parent_id": "late-jurassic"
+  },
+
+  {
+    "id": "tithonian",
+    "name": "Tithonian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 149.2,
+    "begin_uncertainty_ma": 0.7,
+    "end_time_ma": 143.1,
+    "end_uncertainty_ma": 0.6,
+    "parent_id": "late-jurassic"
+  },
+
+  {
+    "id": "cretaceous",
+    "name": "Cretaceous",
+    "rank": "Period",
+    "rank_order": 4,
+    "begin_time_ma": 143.1,
+    "begin_uncertainty_ma": 0.6,
+    "end_time_ma": 66.0,
+    "end_uncertainty_ma": 0.0,
+    "parent_id": "mesozoic"
+  },
+
+  {
+    "id": "early-cretaceous",
+    "name": "Early Cretaceous",
+    "rank": "Epoch",
+    "rank_order": 5,
+    "begin_time_ma": 143.1,
+    "begin_uncertainty_ma": 0.6,
+    "end_time_ma": 100.5,
+    "end_uncertainty_ma": 0.1,
+    "parent_id": "cretaceous"
+  },
+
+  {
+    "id": "berriasian",
+    "name": "Berriasian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 143.1,
+    "begin_uncertainty_ma": 0.6,
+    "end_time_ma": 137.05,
+    "end_uncertainty_ma": 0.2,
+    "parent_id": "early-cretaceous"
+  },
+
+  {
+    "id": "valanginian",
+    "name": "Valanginian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 137.05,
+    "begin_uncertainty_ma": 0.2,
+    "end_time_ma": 132.6,
+    "end_uncertainty_ma": 0.6,
+    "parent_id": "early-cretaceous"
+  },
+
+  {
+    "id": "hauterivian",
+    "name": "Hauterivian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 132.6,
+    "begin_uncertainty_ma": 0.6,
+    "end_time_ma": 125.77,
+    "end_uncertainty_ma": 0.0,
+    "parent_id": "early-cretaceous"
+  },
+
+  {
+    "id": "barremian",
+    "name": "Barremian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 125.77,
+    "begin_uncertainty_ma": 0.0,
+    "end_time_ma": 121.4,
+    "end_uncertainty_ma": 0.6,
+    "parent_id": "early-cretaceous"
+  },
+
+  {
+    "id": "aptian",
+    "name": "Aptian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 121.4,
+    "begin_uncertainty_ma": 0.6,
+    "end_time_ma": 113.2,
+    "end_uncertainty_ma": 0.3,
+    "parent_id": "early-cretaceous"
+  },
+
+  {
+    "id": "albian",
+    "name": "Albian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 113.2,
+    "begin_uncertainty_ma": 0.3,
+    "end_time_ma": 100.5,
+    "end_uncertainty_ma": 0.1,
+    "parent_id": "early-cretaceous"
+  },
+
+  {
+    "id": "late-cretaceous",
+    "name": "Late Cretaceous",
+    "rank": "Epoch",
+    "rank_order": 5,
+    "begin_time_ma": 100.5,
+    "begin_uncertainty_ma": 0.1,
+    "end_time_ma": 66.0,
+    "end_uncertainty_ma": 0.0,
+    "parent_id": "cretaceous"
+  },
+
+  {
+    "id": "cenomanian",
+    "name": "Cenomanian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 100.5,
+    "begin_uncertainty_ma": 0.1,
+    "end_time_ma": 93.9,
+    "end_uncertainty_ma": 0.2,
+    "parent_id": "late-cretaceous"
+  },
+
+  {
+    "id": "turonian",
+    "name": "Turonian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 93.9,
+    "begin_uncertainty_ma": 0.2,
+    "end_time_ma": 89.8,
+    "end_uncertainty_ma": 0.3,
+    "parent_id": "late-cretaceous"
+  },
+
+  {
+    "id": "coniacian",
+    "name": "Coniacian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 89.8,
+    "begin_uncertainty_ma": 0.3,
+    "end_time_ma": 85.7,
+    "end_uncertainty_ma": 0.2,
+    "parent_id": "late-cretaceous"
+  },
+
+  {
+    "id": "santonian",
+    "name": "Santonian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 85.7,
+    "begin_uncertainty_ma": 0.2,
+    "end_time_ma": 83.6,
+    "end_uncertainty_ma": 0.2,
+    "parent_id": "late-cretaceous"
+  },
+
+  {
+    "id": "campanian",
+    "name": "Campanian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 83.6,
+    "begin_uncertainty_ma": 0.2,
+    "end_time_ma": 72.2,
+    "end_uncertainty_ma": 0.2,
+    "parent_id": "late-cretaceous"
+  },
+
+  {
+    "id": "maastrichtian",
+    "name": "Maastrichtian",
+    "rank": "Age",
+    "rank_order": 6,
+    "begin_time_ma": 72.2,
+    "begin_uncertainty_ma": 0.2,
+    "end_time_ma": 66.0,
+    "end_uncertainty_ma": 0.0,
+    "parent_id": "late-cretaceous"
+  }
+]

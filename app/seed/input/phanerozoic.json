@@ -1,0 +1,14 @@
+[
+  {
+    "id": "phanerozoic",
+    "name": "Phanerozoic",
+    "rank": "Eon",
+    "rank_order": 2,
+    "begin_time_ma": 538.8,
+    "begin_uncertainty_ma": 0.6,
+    "end_time_ma": 0.0,
+    "end_uncertainty_ma": 0.0,
+    "parent_id": null
+  }
+]
+
