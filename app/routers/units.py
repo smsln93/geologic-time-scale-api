@@ -6,7 +6,9 @@ from sqlalchemy.orm import Session
 from app.config.security import verify_api_key
 from app.database.session import get_db
 from app.models.chronostratigraphic_unit_model import ChronostratigraphicUnitDB
-from app.schemas.chronostratigraphic_unit import ChronostratigraphicUnitCreate, ChronostratigraphicUnitRead, ChronostratigraphicUnitUpdate
+from app.schemas.chronostratigraphic_unit import (ChronostratigraphicUnitCreate, ChronostratigraphicUnitRead,
+                                                  UnitDescription, UnitDuration, UnitPath,
+                                                  ChronostratigraphicUnitFormatter, ChronostratigraphicUnitService)
 from app.utils.time_value_formatter import format_duration_representation
 from app.api.router import api_router
 
@@ -29,7 +31,7 @@ def get_units(rank: Optional[str] = None,
     if at_time is not None and (before is not None or after is not None):
         raise HTTPException(
             status_code=400,
-            detail="Cannot combine at_time with older_than/younger_than"
+            detail="Cannot combine at_time with before/after"
         )
 
     if rank not in (None, "", " "):
@@ -48,6 +50,10 @@ def get_units(rank: Optional[str] = None,
     if after not in (None, "", " "):
         query = query.filter(ChronostratigraphicUnitDB.end_time_ma < after)
 
+    if before is not None and after is not None:
+        if before >= after:
+            raise HTTPException(status_code=400, detail="Invalid range: 'after' must be greater than 'before'")
+
     return query.all()
 
 
@@ -57,30 +63,34 @@ def get_units(rank: Optional[str] = None,
                 summary="Get unit",
                 description="Returns detailed information about a geologic unit")
 def get_unit(unit_id: str, db: Session = Depends(get_db)):
-    query = db.query(ChronostratigraphicUnitDB)
-    query = query.filter(ChronostratigraphicUnitDB.id == unit_id)
-    return query.all()
-
-
-@api_router.get(path="/units/{unit_id}/description",
-                tags=["Geologic Time Scale Units (READ)"],
-                response_model=ChronostratigraphicUnitRead,
-                summary="Get unit description",
-                description="Returns the description of the geologic unit")
-def get_unit_description(unit_id: str, db: Session = Depends(get_db)):
-    unit = db.query(ChronostratigraphicUnitDB).filter(ChronostratigraphicUnitDB.id == unit_id).first()
+    unit = db.query(ChronostratigraphicUnitDB).filter_by(id=unit_id).first()
 
     if not unit:
         raise HTTPException(status_code=404, detail="Unit not found")
 
-    unit_schema = ChronostratigraphicUnitRead.model_validate(unit)
+    return unit
 
-    return unit_schema.description
+
+@api_router.get(path="/units/{unit_id}/description",
+                tags=["Geologic Time Scale Units (READ)"],
+                response_model=UnitDescription,
+                summary="Get unit description",
+                description="Returns the description of the geologic unit")
+def get_unit_description(unit_id: str, db: Session = Depends(get_db)):
+    unit = db.query(ChronostratigraphicUnitDB).filter_by(id=unit_id).first()
+
+    if not unit:
+        raise HTTPException(status_code=404, detail="Unit not found")
+
+    unit_read = ChronostratigraphicUnitRead.model_validate(unit)
+    unit_description = ChronostratigraphicUnitFormatter.description(unit_read)
+
+    return UnitDescription(description=unit_description)
 
 
 @api_router.get(path="/units/{unit_id}/child_units",
                 tags=["Geologic Time Scale Units (READ)"],
-                response_model=ChronostratigraphicUnitRead,
+                response_model=List[ChronostratigraphicUnitRead],
                 summary="Get child units",
                 description="Returns all lower-level geologic subdivisions (e.g. Era → Periods)")
 def get_child_units(unit_id: str, db: Session = Depends(get_db)):
@@ -88,7 +98,7 @@ def get_child_units(unit_id: str, db: Session = Depends(get_db)):
     if not unit:
         raise HTTPException(status_code=404, detail="Unit not found")
 
-    return unit.children
+    return [ChronostratigraphicUnitRead.model_validate(child) for child in unit.children]
 
 
 @api_router.get(path="/units/{unit_id}/parent_unit",
@@ -106,29 +116,34 @@ def get_parent_unit(unit_id: str, db: Session = Depends(get_db)):
 
 @api_router.get(path="/units/{unit_id}/path",
                 tags=["Geologic Time Scale Units (READ)"],
-                response_model=ChronostratigraphicUnitRead,
+                response_model=UnitPath,
                 summary="Get unit lineage path",
                 description="Returns full hierarchical path from the root (e.g. Eon → Era → Period → Epoch)")
 def get_unit_path(unit_id: str, db: Session = Depends(get_db)):
-    unit = db.query(ChronostratigraphicUnitDB).filter_by(id=unit_id).first()
+    units = db.query(ChronostratigraphicUnitDB).all()
 
-    if not unit:
+    unit_map = {
+        unit.id: unit for unit in units
+    }
+
+    path: List[str] = []
+    current = unit_map.get(unit_id)
+
+    if not current:
         raise HTTPException(status_code=404, detail="Unit not found")
 
-    path: Dict[str, str] = {}
-
-    current = unit
-
     while current:
-        path[current.rank] = current.name
-        current = current.parent
+        path.append(current.name)
+        current = unit_map.get(current.parent_id)
+        if not current:
+            break
 
-    return path
+    return UnitPath(id=unit_id , name=path[0], path=list(reversed(path)))
 
 
 @api_router.get(path="/units/{unit_id}/duration",
                 tags=["Geologic Time Scale Units (READ)"],
-                response_model=ChronostratigraphicUnitRead,
+                response_model=UnitDuration,
                 summary="Get unit duration",
                 description="Returns the time span of the unit")
 def get_unit_duration(unit_id: str, db: Session = Depends(get_db)):
@@ -136,8 +151,10 @@ def get_unit_duration(unit_id: str, db: Session = Depends(get_db)):
     if not unit:
         raise HTTPException(status_code=404, detail="Unit not found")
 
-    unit_schema = ChronostratigraphicUnitRead.model_validate(unit)
-    return format_duration_representation(unit_schema.duration_ma)
+    unit_read = ChronostratigraphicUnitRead.model_validate(unit)
+    unit_duration = ChronostratigraphicUnitService.duration_ma(unit_read)
+    return UnitDuration(duration_ma=unit_duration,
+                        formatted_duration=format_duration_representation(unit_duration))
 
 
 @api_router.post(path="/units",

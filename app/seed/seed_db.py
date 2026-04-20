@@ -7,8 +7,14 @@ from app.models.chronostratigraphic_unit_model import ChronostratigraphicUnitDB
 def seed_db(session):
     base_path = Path(__file__).parent.joinpath("input")
 
-    files = ["phanerozoic.json",
-             "mesozoic.json"]
+    files = ["precambrian.json",
+             "hadean.json",
+             "archean.json",
+             "proterozoic.json",
+             "phanerozoic.json",
+             "paleozoic.json",
+             "mesozoic.json",
+             "cenozoic.json"]
 
     for file in files:
         with open(base_path.joinpath(file), "r") as json_file:

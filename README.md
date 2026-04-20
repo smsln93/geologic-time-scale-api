@@ -129,6 +129,7 @@ Headers:
   X-API-Key: your_api_key
 Body:
 {
+"id": "jurassic",
 "name": "Jurassic",
 "rank": "Period",
 "rank_order": 4,
@@ -148,6 +149,7 @@ Headers:
   X-API-Key: your_api_key
 Body:
 {
+  "id": "jurassic"
   "name": "Jurassic",
   "rank": "Period",
   "rank_order": 4,
@@ -175,12 +177,6 @@ DELETE /units/hadean
 Headers:
   X-API-Key: your_api_key
 ```
-
-
-
-
-
-
 
 ### Export data (public)
 ```
@@ -215,7 +211,7 @@ Key objectives:
 ## Roadmap / TODO
 
 * [x] Add full CRUD endpoints for chronostratigraphic units
-* [ ] Extend input JSON dataset with additional chronostratigraphic units
+* [x] Extend input JSON dataset with additional chronostratigraphic units
 * [ ] Implement automated tests (unit and integration)
 * [ ] Add Docker support for containerized deployment
 * [ ] Introduce `pyproject.toml` for project configuration and dependency management
