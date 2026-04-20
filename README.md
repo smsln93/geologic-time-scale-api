@@ -89,26 +89,103 @@ After running the server:
 
 ---
 
-## Example Endpoints
+## Example API Endpoints
 
-### Get all units
+### Get all units (public)
 ```
 GET /units
 ```
+Optional filters:
+```
+GET /units?rank=Period&parent_id=pharenozoic
+GET /units?at_time=100
+GET /units?before=250&after=100
+```
+### Get unit by ID (public)
+```
+GET /units/mesozoic
+```
 
-### Get unit by ID
+### Get unit duration (public)
 ```
-GET /units/{unit_id}
-```
-
-### Get unit duration
-```
-GET /units/{unit_id}/duration
+GET /units/triassic/duration
 ```
 
-### Export data
+To use secure endpoints (POST, PUT, PATCH, DELETE), you must define an API key in your `.env` file:
+```dotenv
+API_KEY=your_secret_api_key
+```
+Without API key configured, write operations will not be available or will be rejected by the server (HTTP 403).
+Remember to include the key in request headers:
+```bash
+X-API-Key: your_secret_api_key
+```
+
+### Create unit (requires API key)
+```
+POST /units
+
+Headers:
+  X-API-Key: your_api_key
+Body:
+{
+"name": "Jurassic",
+"rank": "Period",
+"rank_order": 4,
+"parent_id": "mesozoic",
+"begin_time_ma": 201.3,
+"begin_uncertainty_ma": 0.2,
+"end_time_ma": 145.0,
+"end_uncertainty_ma": 0.2
+}
+```
+
+### Update unit (requires API key)
+```
+PUT /units/jurassic
+
+Headers:
+  X-API-Key: your_api_key
+Body:
+{
+  "name": "Jurassic",
+  "rank": "Period",
+  "rank_order": 4,
+  "parent_id": "mesozoic",
+  "begin_time_ma": 201.3,
+  "begin_uncertainty_ma": 0.2,
+  "end_time_ma": 145.0,
+  "end_uncertainty_ma": 0.2
+}
+```
+```
+PATCH /units/jurassic
+
+Headers:
+  X-API-Key: your_api_key
+Body:
+{
+"name": "Jurassic"
+}
+```
+
+### Delete unit (requires API key)
+```
+DELETE /units/hadean
+Headers:
+  X-API-Key: your_api_key
+```
+
+
+
+
+
+
+
+### Export data (public)
 ```
 GET /export/csv
+GET /export/json
 ```
 Exported files are generated and stored in the `/exports` directory.
 
@@ -137,7 +214,7 @@ Key objectives:
 
 ## Roadmap / TODO
 
-* [ ] Add full CRUD endpoints for chronostratigraphic units
+* [x] Add full CRUD endpoints for chronostratigraphic units
 * [ ] Extend input JSON dataset with additional chronostratigraphic units
 * [ ] Implement automated tests (unit and integration)
 * [ ] Add Docker support for containerized deployment
