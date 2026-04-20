@@ -9,7 +9,7 @@ from sqlalchemy.orm import Session
 from app.config.config_paths import EXPORT_DIR
 from app.database.session import get_db
 from app.models.chronostratigraphic_unit_model import ChronostratigraphicUnitDB
-from app.schemas.chronostratigraphic_unit import ChronostratigraphicUnitBase
+from app.schemas.chronostratigraphic_unit import ChronostratigraphicUnitRead
 from app.api.router import api_router
 
 
@@ -53,7 +53,7 @@ def export_units_json(db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="No seed to export")
 
     units_schema = [
-        ChronostratigraphicUnitBase.model_validate(unit).to_json_dict()
+        ChronostratigraphicUnitRead.model_validate(unit).model_dump(mode="json")
         for unit in units
     ]
 

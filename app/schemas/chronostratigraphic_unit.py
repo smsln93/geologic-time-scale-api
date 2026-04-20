@@ -5,7 +5,34 @@ from pydantic import BaseModel, model_validator, ConfigDict
 from app.utils.time_value_formatter import format_description_representation
 
 
-class ChronostratigraphicUnitBase(BaseModel):
+class ChronostratigraphicUnitCreate(BaseModel):
+    name: str
+    rank: Literal["Supereon", "Eon", "Era", "Period", "Epoch", "Age"]
+
+    parent_id: Optional[str] = None
+
+    begin_time_ma: float
+    begin_uncertainty_ma: float = 0.0
+    end_time_ma: float
+    end_uncertainty_ma: float = 0.0
+
+    @model_validator(mode="after")
+    def validate(self):
+        for time, value in {
+            "begin_time_ma": self.begin_time_ma,
+            "begin_uncertainty_ma": self.begin_uncertainty_ma,
+            "end_time_ma": self.end_time_ma,
+            "end_uncertainty_ma": self.end_uncertainty_ma}.items():
+            if value < 0:
+                raise ValueError(f"Parameter {time} cannot be a negative value {value}")
+
+        if self.begin_time_ma < self.end_time_ma:
+            raise ValueError("Ending time cannot be greater than beginning time")
+
+        return self
+
+
+class ChronostratigraphicUnitRead(BaseModel):
     id: str
     name: str
     rank: Literal["Supereon", "Eon", "Era", "Period", "Epoch", "Age"]
@@ -20,27 +47,6 @@ class ChronostratigraphicUnitBase(BaseModel):
 
     model_config = ConfigDict(from_attributes=True)
 
-    @model_validator(mode="after")
-    def validate(self):
-        for time, value in {
-            "begin_time_ma": self.begin_time_ma,
-            "begin_uncertainty_ma": self.begin_uncertainty_ma,
-            "end_time_ma": self.end_time_ma,
-            "end_uncertainty_ma": self.end_uncertainty_ma}.items():
-            if value < 0:
-                raise ValueError(f"{self.id} parameter {time} cannot be a negative value {value}")
-
-        if self.begin_time_ma < self.end_time_ma:
-            raise ValueError("Ending time cannot be greater than beginning time")
-
-        if self.parent_id is not None and self.id == self.parent_id:
-            raise ValueError("Unit cannot be its own parent")
-
-        return self
-
-    def get_parent_id(self) -> Optional[str]:
-        return self.parent_id
-
     @property
     def duration_ma(self) -> float:
         return round(max(0.0, self.begin_time_ma - self.end_time_ma),3)
@@ -52,18 +58,28 @@ class ChronostratigraphicUnitBase(BaseModel):
 
         return f"{self.name} - {self.rank} lasted from {unit_begins} to {unit_ends}"
 
-    def contains_unit(self, other: ChronostratigraphicUnitBase) -> bool:
-        return self.begin_time_ma >= other.begin_time_ma and self.end_time_ma <= other.end_time_ma
 
-    def contains_age_ma(self, age_ma: float) -> bool:
-        return self.begin_time_ma >= age_ma > self.end_time_ma
+class ChronostratigraphicUnitUpdate(BaseModel):
+    name: Optional[str] = None
+    rank: Optional[str] = None
+    rank_order: Optional[int]
 
-    def to_json_dict(self) -> dict:
-        return self.model_dump(mode="json")
+    parent_id: Optional[str] = None
 
-    def __str__(self) -> str:
-        return self.description
+    begin_time_ma: Optional[float] = None
+    begin_uncertainty_ma: Optional[float] = None
+    end_time_ma: Optional[float] = None
+    end_uncertainty_ma: Optional[float] = None
 
-    def __repr__(self) -> str:
-        return (f"ChronostratigraphicUnit(id={self.id}, name={self.name}, rank={self.rank}, parent_id={self.parent_id}, "
-                f"begin_time_ma={self.begin_time_ma}, end_time_ma={self.end_time_ma}, description={self.description})")
+
+class ChronostratigraphicUnitService:
+
+    @staticmethod
+    def contains_unit(unit, other) -> bool:
+        return unit.begin_time_ma >= other.begin_time_ma and unit.end_time_ma <= other.end_time_ma
+
+    @staticmethod
+    def contains_age_ma(unit, age_ma: float) -> bool:
+        return unit.begin_time_ma >= age_ma > unit.end_time_ma
+
+

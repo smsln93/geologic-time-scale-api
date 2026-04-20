@@ -23,7 +23,7 @@ class Config:
             raise RuntimeError(".env file not found or empty")
 
     def _assign_parameters(self) -> None:
-        self.api_key = self._required("API_KEY")
+        self.api_key = self.env_variables.get("API_KEY")
         self.api_base_url = self._required("API_BASE_URL")
         self.database_url = self._required("DATABASE_URL")
 

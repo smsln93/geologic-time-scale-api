@@ -1,17 +1,19 @@
-from typing import Optional, Dict
+from typing import Optional, Dict, List
 
 from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 
+from app.config.security import verify_api_key
 from app.database.session import get_db
 from app.models.chronostratigraphic_unit_model import ChronostratigraphicUnitDB
-from app.schemas.chronostratigraphic_unit import ChronostratigraphicUnitBase
+from app.schemas.chronostratigraphic_unit import ChronostratigraphicUnitCreate, ChronostratigraphicUnitRead, ChronostratigraphicUnitUpdate
 from app.utils.time_value_formatter import format_duration_representation
 from app.api.router import api_router
 
 
 @api_router.get(path="/units",
-                tags=["Geologic Time Scale Units"],
+                tags=["Geologic Time Scale Units (READ)"],
+                response_model=List[ChronostratigraphicUnitRead],
                 summary="List units",
                 description="Returns all geologic units, optionally filtered "
                             "by rank, hierarchy, a specific point in time or time boundaries (before/after).")
@@ -50,7 +52,8 @@ def get_units(rank: Optional[str] = None,
 
 
 @api_router.get(path="/units/{unit_id}",
-                tags=["Geologic Time Scale Units"],
+                tags=["Geologic Time Scale Units (READ)"],
+                response_model=ChronostratigraphicUnitRead,
                 summary="Get unit",
                 description="Returns detailed information about a geologic unit")
 def get_unit(unit_id: str, db: Session = Depends(get_db)):
@@ -60,7 +63,8 @@ def get_unit(unit_id: str, db: Session = Depends(get_db)):
 
 
 @api_router.get(path="/units/{unit_id}/description",
-                tags=["Geologic Time Scale Units"],
+                tags=["Geologic Time Scale Units (READ)"],
+                response_model=ChronostratigraphicUnitRead,
                 summary="Get unit description",
                 description="Returns the description of the geologic unit")
 def get_unit_description(unit_id: str, db: Session = Depends(get_db)):
@@ -69,13 +73,14 @@ def get_unit_description(unit_id: str, db: Session = Depends(get_db)):
     if not unit:
         raise HTTPException(status_code=404, detail="Unit not found")
 
-    unit_schema = ChronostratigraphicUnitBase.model_validate(unit)
+    unit_schema = ChronostratigraphicUnitRead.model_validate(unit)
 
     return unit_schema.description
 
 
 @api_router.get(path="/units/{unit_id}/child_units",
-                tags=["Geologic Time Scale Units"],
+                tags=["Geologic Time Scale Units (READ)"],
+                response_model=ChronostratigraphicUnitRead,
                 summary="Get child units",
                 description="Returns all lower-level geologic subdivisions (e.g. Era → Periods)")
 def get_child_units(unit_id: str, db: Session = Depends(get_db)):
@@ -87,7 +92,8 @@ def get_child_units(unit_id: str, db: Session = Depends(get_db)):
 
 
 @api_router.get(path="/units/{unit_id}/parent_unit",
-                tags=["Geologic Time Scale Units"],
+                tags=["Geologic Time Scale Units (READ)"],
+                response_model=ChronostratigraphicUnitRead,
                 summary="Get parent unit",
                 description="Returns the immediate higher-level geologic unit (e.g. Period → Era)")
 def get_parent_unit(unit_id: str, db: Session = Depends(get_db)):
@@ -99,7 +105,8 @@ def get_parent_unit(unit_id: str, db: Session = Depends(get_db)):
 
 
 @api_router.get(path="/units/{unit_id}/path",
-                tags=["Geologic Time Scale Units"],
+                tags=["Geologic Time Scale Units (READ)"],
+                response_model=ChronostratigraphicUnitRead,
                 summary="Get unit lineage path",
                 description="Returns full hierarchical path from the root (e.g. Eon → Era → Period → Epoch)")
 def get_unit_path(unit_id: str, db: Session = Depends(get_db)):
@@ -120,7 +127,8 @@ def get_unit_path(unit_id: str, db: Session = Depends(get_db)):
 
 
 @api_router.get(path="/units/{unit_id}/duration",
-                tags=["Geologic Time Scale Units"],
+                tags=["Geologic Time Scale Units (READ)"],
+                response_model=ChronostratigraphicUnitRead,
                 summary="Get unit duration",
                 description="Returns the time span of the unit")
 def get_unit_duration(unit_id: str, db: Session = Depends(get_db)):
@@ -128,5 +136,77 @@ def get_unit_duration(unit_id: str, db: Session = Depends(get_db)):
     if not unit:
         raise HTTPException(status_code=404, detail="Unit not found")
 
-    unit_schema = ChronostratigraphicUnitBase.model_validate(unit)
+    unit_schema = ChronostratigraphicUnitRead.model_validate(unit)
     return format_duration_representation(unit_schema.duration_ma)
+
+
+@api_router.post(path="/units",
+                 tags=["Geologic Time Scale Units (WRITE)"],
+                 dependencies=[Depends(verify_api_key)],
+                 response_model=ChronostratigraphicUnitRead,
+                 summary="Create unit",
+                 description="Returns newly created unit")
+def create_unit(payload: ChronostratigraphicUnitCreate, db: Session = Depends(get_db)):
+
+    unit = ChronostratigraphicUnitDB(**payload.model_dump())
+
+    db.add(unit)
+    db.commit()
+    db.refresh(unit)
+
+    return unit
+
+@api_router.put(path="/units/{unit_id}",
+                tags=["Geologic Time Scale Units (WRITE)"],
+                dependencies=[Depends(verify_api_key)],
+                response_model=ChronostratigraphicUnitRead,
+                summary="Update unit",
+                description="Returns updated unit")
+def update_unit(unit_id: str, payload: ChronostratigraphicUnitCreate, db: Session = Depends(get_db)):
+
+    unit = db.query(ChronostratigraphicUnitDB).filter_by(id=unit_id).first()
+
+    for key, value in payload.model_dump().items():
+        setattr(unit, key, value)
+
+    db.commit()
+    db.refresh(unit)
+
+    return unit
+
+
+@api_router.patch(path="/units/{unit_id}",
+                  tags=["Geologic Time Scale Units (WRITE)"],
+                  dependencies=[Depends(verify_api_key)],
+                  response_model=ChronostratigraphicUnitRead,
+                  summary="Update parts of the unit",
+                  description="Returns updated unit")
+def update_unit(unit_id: str, payload: ChronostratigraphicUnitCreate, db: Session = Depends(get_db)):
+
+    unit = db.query(ChronostratigraphicUnitDB).filter_by(id=unit_id).first()
+
+    for key, value in payload.model_dump(exclude_unset=True).items():
+        setattr(unit, key, value)
+
+    db.commit()
+    db.refresh(unit)
+
+    return unit
+
+
+@api_router.delete(path="/units/{unit_id}",
+                   tags=["Geologic Time Scale Units (WRITE)"],
+                   dependencies=[Depends(verify_api_key)],
+                   summary="Delete unit",
+                   description="Deletes unit")
+def update_unit(unit_id: str, db: Session = Depends(get_db)):
+
+    unit = db.query(ChronostratigraphicUnitDB).filter_by(id=unit_id).first()
+
+    if not unit:
+        raise HTTPException(status_code=404, detail="Unit not found")
+
+    db.delete(unit)
+    db.commit()
+
+    return {"deleted_id": unit_id}
