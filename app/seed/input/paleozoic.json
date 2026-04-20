@@ -1,0 +1,877 @@
+[
+  {
+    "id": "paleozoic",
+    "name": "Paleozoic",
+    "rank": "Era",
+    "rank_order": 3,
+    "begin_time_ma": 538.8,
+    "begin_uncertainty_ma": 0.6,
+    "end_time_ma": 251.902,
+    "end_uncertainty_ma": 0.024,
+    "parent_id": "phanerozoic"
+  },
+
+    {
+      "id": "cambrian",
+      "name": "Cambrian",
+      "rank": "Period",
+      "rank_order": 4,
+      "begin_time_ma": 538.8,
+      "begin_uncertainty_ma": 0.6,
+      "end_time_ma": 486.85,
+      "end_uncertainty_ma": 1.5,
+      "parent_id": "paleozoic"
+    },
+
+      {
+        "id": "terreneuvian",
+        "name": "Terreneuvian",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 538.8,
+        "begin_uncertainty_ma": 0.6,
+        "end_time_ma": 521,
+        "end_uncertainty_ma": 0.0,
+        "parent_id": "cambrian"
+      },
+
+        {
+          "id": "fortunian",
+          "name": "Fortunian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 538.8,
+          "begin_uncertainty_ma": 0.6,
+          "end_time_ma": 529,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "terreneuvian"
+        },
+
+        {
+          "id": "cambrian-stage-2",
+          "name": "Cambrian Stage 2",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 529,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 521,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "terreneuvian"
+        },
+
+      {
+        "id": "cambrian-series-2",
+        "name": "Cambrian Series 2",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 521,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 506.5,
+        "end_uncertainty_ma": 0.0,
+        "parent_id": "cambrian"
+      },
+
+        {
+          "id": "cambrian-stage-3",
+          "name": "Cambrian Stage 3",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 521,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 514.5,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "cambrian-series-2"
+        },
+
+        {
+          "id": "cambrian-stage-4",
+          "name": "Cambrian Stage 4",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 514.5,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 506.5,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "cambrian-series-2"
+        },
+
+      {
+        "id": "miaolingian",
+        "name": "Miaolingian",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 506.5,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 497,
+        "end_uncertainty_ma": 0.0,
+        "parent_id": "cambrian"
+      },
+
+        {
+          "id": "wuliuan",
+          "name": "Wuliuan",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 506.5,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 504.5,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "miaolingian"
+        },
+
+        {
+          "id": "drumian",
+          "name": "Drumian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 504.5,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 500.5,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "miaolingian"
+        },
+
+        {
+          "id": "guzhangian",
+          "name": "Guzhangian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 500.5,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 497,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "miaolingian"
+        },
+
+      {
+        "id": "furongian",
+        "name": "Furongian",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 497,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 486.85,
+        "end_uncertainty_ma": 1.5,
+        "parent_id": "cambrian"
+      },
+
+        {
+          "id": "paibian",
+          "name": "Paibian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 497,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 494.2,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "furongian"
+        },
+
+        {
+          "id": "jiangshanian",
+          "name": "Jiangshanian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 494.2,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 491,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "furongian"
+        },
+
+        {
+          "id": "cambrian-stage-10",
+          "name": "Cambrian Stage 10",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 491,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 486.85,
+          "end_uncertainty_ma": 1.5,
+          "parent_id": "furongian"
+        },
+
+    {
+      "id": "ordovician",
+      "name": "Ordovician",
+      "rank": "Period",
+      "rank_order": 4,
+      "begin_time_ma": 486.85,
+      "begin_uncertainty_ma": 1.5,
+      "end_time_ma": 443.1,
+      "end_uncertainty_ma": 1.0,
+      "parent_id": "paleozoic"
+    },
+
+      {
+        "id": "early-ordovician",
+        "name": "Early Ordovician",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 486.85,
+        "begin_uncertainty_ma": 1.5,
+        "end_time_ma": 471.3,
+        "end_uncertainty_ma": 1.4,
+        "parent_id": "ordovician"
+      },
+
+        {
+          "id": "tremadocian",
+          "name": "Tremadocian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 486.85,
+          "begin_uncertainty_ma": 1.5,
+          "end_time_ma": 477.1,
+          "end_uncertainty_ma": 1.2,
+          "parent_id": "early-ordovician"
+        },
+
+        {
+          "id": "floian",
+          "name": "Floian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 477.1,
+          "begin_uncertainty_ma": 1.2,
+          "end_time_ma": 471.3,
+          "end_uncertainty_ma": 1.4,
+          "parent_id": "early-ordovician"
+        },
+
+      {
+        "id": "middle-ordovician",
+        "name": "Middle Ordovician",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 471.3,
+        "begin_uncertainty_ma": 1.4,
+        "end_time_ma": 458.2,
+        "end_uncertainty_ma": 0.7,
+        "parent_id": "ordovician"
+      },
+
+        {
+          "id": "dapingian",
+          "name": "Dapingian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 471.3,
+          "begin_uncertainty_ma": 1.4,
+          "end_time_ma": 469.4,
+          "end_uncertainty_ma": 0.9,
+          "parent_id": "middle-ordovician"
+        },
+
+        {
+          "id": "darriwilian",
+          "name": "Darriwilian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 469.4,
+          "begin_uncertainty_ma": 0.9,
+          "end_time_ma": 458.2,
+          "end_uncertainty_ma": 0.7,
+          "parent_id": "middle-ordovician"
+        },
+
+      {
+        "id": "late-ordovician",
+        "name": "Late Ordovician",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 458.2,
+        "begin_uncertainty_ma": 0.7,
+        "end_time_ma": 443.1,
+        "end_uncertainty_ma": 1.0,
+        "parent_id": "ordovician"
+      },
+
+        {
+          "id": "sandbian",
+          "name": "Sandbian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 458.2,
+          "begin_uncertainty_ma": 0.7,
+          "end_time_ma": 452.8,
+          "end_uncertainty_ma": 0.7,
+          "parent_id": "late-ordovician"
+        },
+
+        {
+          "id": "Katian",
+          "name": "Katian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 452.8,
+          "begin_uncertainty_ma": 0.7,
+          "end_time_ma": 445.2,
+          "end_uncertainty_ma": 0.9,
+          "parent_id": "late-ordovician"
+        },
+
+        {
+          "id": "hirnantian",
+          "name": "Hirnantian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 445.2,
+          "begin_uncertainty_ma": 0.9,
+          "end_time_ma": 443.1,
+          "end_uncertainty_ma": 1.0,
+          "parent_id": "late-ordovician"
+        },
+
+    {
+      "id": "silurian",
+      "name": "Silurian",
+      "rank": "Period",
+      "rank_order": 4,
+      "begin_time_ma": 443.1,
+      "begin_uncertainty_ma": 1.0,
+      "end_time_ma": 419.62,
+      "end_uncertainty_ma": 1.36,
+      "parent_id": "paleozoic"
+    },
+
+      {
+        "id": "llandovery",
+        "name": "Llandovery",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 443.1,
+        "begin_uncertainty_ma": 1.0,
+        "end_time_ma": 432.9,
+        "end_uncertainty_ma": 1.2,
+        "parent_id": "silurian"
+      },
+
+        {
+          "id": "rhuddanian",
+          "name": "Rhuddanian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 443.1,
+          "begin_uncertainty_ma": 1.0,
+          "end_time_ma": 440.5,
+          "end_uncertainty_ma": 1.0,
+          "parent_id": "llandovery"
+        },
+
+        {
+          "id": "aeronian",
+          "name": "Aeronian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 440.5,
+          "begin_uncertainty_ma": 1.0,
+          "end_time_ma": 438.6,
+          "end_uncertainty_ma": 1.0,
+          "parent_id": "llandovery"
+        },
+
+        {
+          "id": "telychian",
+          "name": "Telychian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 438.6,
+          "begin_uncertainty_ma": 1.0,
+          "end_time_ma": 432.9,
+          "end_uncertainty_ma": 1.2,
+          "parent_id": "llandovery"
+        },
+
+      {
+        "id": "wenlock",
+        "name": "Wenlock",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 432.9,
+        "begin_uncertainty_ma": 1.2,
+        "end_time_ma": 426.7,
+        "end_uncertainty_ma": 1.5,
+        "parent_id": "silurian"
+      },
+
+        {
+          "id": "sheinwoodian",
+          "name": "Sheinwoodian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 432.9,
+          "begin_uncertainty_ma": 1.2,
+          "end_time_ma": 430.6,
+          "end_uncertainty_ma": 1.3,
+          "parent_id": "wenlock"
+        },
+
+        {
+          "id": "homerian",
+          "name": "Homerian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 430.6,
+          "begin_uncertainty_ma": 1.3,
+          "end_time_ma": 426.7,
+          "end_uncertainty_ma": 1.5,
+          "parent_id": "wenlock"
+        },
+
+      {
+        "id": "ludlow",
+        "name": "Ludlow",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 426.7,
+        "begin_uncertainty_ma": 1.5,
+        "end_time_ma": 422.7,
+        "end_uncertainty_ma": 1.6,
+        "parent_id": "silurian"
+      },
+
+        {
+          "id": "gorstian",
+          "name": "Gorstian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 426.7,
+          "begin_uncertainty_ma": 1.5,
+          "end_time_ma": 425,
+          "end_uncertainty_ma": 1.5,
+          "parent_id": "ludlow"
+        },
+
+        {
+          "id": "ludfordian",
+          "name": "Ludfordian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 425,
+          "begin_uncertainty_ma": 1.5,
+          "end_time_ma": 422.7,
+          "end_uncertainty_ma": 1.6,
+          "parent_id": "ludlow"
+        },
+
+      {
+        "id": "pridoli",
+        "name": "Pridoli",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 422.7,
+        "begin_uncertainty_ma": 1.6,
+        "end_time_ma": 419.62,
+        "end_uncertainty_ma": 1.36,
+        "parent_id": "silurian"
+      },
+
+    {
+      "id": "devonian",
+      "name": "Devonian",
+      "rank": "Period",
+      "rank_order": 4,
+      "begin_time_ma": 419.62,
+      "begin_uncertainty_ma": 1.36,
+      "end_time_ma": 358.86,
+      "end_uncertainty_ma": 0.19,
+      "parent_id": "paleozoic"
+    },
+
+      {
+        "id": "early-devonian",
+        "name": "Early Devonian",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 419.62,
+        "begin_uncertainty_ma": 1.36,
+        "end_time_ma": 393.47,
+        "end_uncertainty_ma": 0.99,
+        "parent_id": "devonian"
+      },
+
+        {
+          "id": "lochkovian",
+          "name": "Lochkovian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 419.62,
+          "begin_uncertainty_ma": 1.36,
+          "end_time_ma": 413.02,
+          "end_uncertainty_ma": 1.91,
+          "parent_id": "early-devonian"
+        },
+
+        {
+          "id": "pragian",
+          "name": "Pragian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 413.02,
+          "begin_uncertainty_ma": 1.91,
+          "end_time_ma": 410.62,
+          "end_uncertainty_ma": 1.95,
+          "parent_id": "early-devonian"
+        },
+
+        {
+          "id": "emsian",
+          "name": "Emsian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 410.62,
+          "begin_uncertainty_ma": 1.95,
+          "end_time_ma": 393.47,
+          "end_uncertainty_ma": 0.99,
+          "parent_id": "early-devonian"
+        },
+
+      {
+        "id": "middle-devonian",
+        "name": "Middle Devonian",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 393.47,
+        "begin_uncertainty_ma": 0.99,
+        "end_time_ma": 382.31,
+        "end_uncertainty_ma": 1.36,
+        "parent_id": "devonian"
+      },
+
+        {
+          "id": "eifelian",
+          "name": "Eifelian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 393.47,
+          "begin_uncertainty_ma": 0.99,
+          "end_time_ma": 387.95,
+          "end_uncertainty_ma": 1.04,
+          "parent_id": "middle-devonian"
+        },
+
+        {
+          "id": "givetian",
+          "name": "Givetian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 387.95,
+          "begin_uncertainty_ma": 1.04,
+          "end_time_ma": 382.31,
+          "end_uncertainty_ma": 1.36,
+          "parent_id": "middle-devonian"
+        },
+
+      {
+        "id": "late-devonian",
+        "name": "Late Devonian",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 382.31,
+        "begin_uncertainty_ma": 1.36,
+        "end_time_ma": 358.86,
+        "end_uncertainty_ma": 0.19,
+        "parent_id": "devonian"
+      },
+
+        {
+          "id": "frasnian",
+          "name": "Frasnian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 382.31,
+          "begin_uncertainty_ma": 1.36,
+          "end_time_ma": 372.15,
+          "end_uncertainty_ma": 0.46,
+          "parent_id": "late-devonian"
+        },
+
+        {
+          "id": "famennian",
+          "name": "Famennian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 372.15,
+          "begin_uncertainty_ma": 0.46,
+          "end_time_ma": 358.86,
+          "end_uncertainty_ma": 0.19,
+          "parent_id": "late-devonian"
+        },
+
+    {
+      "id": "carboniferous",
+      "name": "Carboniferous",
+      "rank": "Period",
+      "rank_order": 4,
+      "begin_time_ma": 358.86,
+      "begin_uncertainty_ma": 0.19,
+      "end_time_ma": 298.9,
+      "end_uncertainty_ma": 0.15,
+      "parent_id": "paleozoic"
+    },
+
+      {
+        "id": "mississippian",
+        "name": "Mississippian",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 358.86,
+        "begin_uncertainty_ma": 0.19,
+        "end_time_ma": 323.4,
+        "end_uncertainty_ma": 0.4,
+        "parent_id": "carboniferous"
+      },
+
+        {
+          "id": "tournaisian",
+          "name": "Tournaisian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 358.86,
+          "begin_uncertainty_ma": 0.19,
+          "end_time_ma": 346.7,
+          "end_uncertainty_ma": 0.4,
+          "parent_id": "mississippian"
+        },
+
+        {
+          "id": "visean",
+          "name": "Visean",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 346.7,
+          "begin_uncertainty_ma": 0.4,
+          "end_time_ma": 330.3,
+          "end_uncertainty_ma": 0.4,
+          "parent_id": "mississippian"
+        },
+
+        {
+          "id": "serpukhovian",
+          "name": "Serpukhovian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 330.3,
+          "begin_uncertainty_ma": 0.4,
+          "end_time_ma": 323.4,
+          "end_uncertainty_ma": 0.4,
+          "parent_id": "mississippian"
+        },
+
+      {
+        "id": "pennsylvanian",
+        "name": "Pennsylvanian",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 323.4,
+        "begin_uncertainty_ma": 0.4,
+        "end_time_ma": 298.9,
+        "end_uncertainty_ma": 0.15,
+        "parent_id": "carboniferous"
+      },
+
+        {
+          "id": "bashkirian",
+          "name": "Bashkirian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 323.4,
+          "begin_uncertainty_ma": 0.4,
+          "end_time_ma": 315.2,
+          "end_uncertainty_ma": 0.2,
+          "parent_id": "pennsylvanian"
+        },
+
+        {
+          "id": "moscovian",
+          "name": "Moscovian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 315.2,
+          "begin_uncertainty_ma": 0.2,
+          "end_time_ma": 307.0,
+          "end_uncertainty_ma": 0.1,
+          "parent_id": "pennsylvanian"
+        },
+
+        {
+          "id": "kasimovian",
+          "name": "Kasimovian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 307.0,
+          "begin_uncertainty_ma": 0.1,
+          "end_time_ma": 303.7,
+          "end_uncertainty_ma": 0.1,
+          "parent_id": "pennsylvanian"
+        },
+
+        {
+          "id": "gzhelian",
+          "name": "Gzhelian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 303.7,
+          "begin_uncertainty_ma": 0.1,
+          "end_time_ma": 298.9,
+          "end_uncertainty_ma": 0.15,
+          "parent_id": "pennsylvanian"
+        },
+
+    {
+      "id": "permian",
+      "name": "Permian",
+      "rank": "Period",
+      "rank_order": 4,
+      "begin_time_ma": 298.9,
+      "begin_uncertainty_ma": 0.15,
+      "end_time_ma": 251.902,
+      "end_uncertainty_ma": 0.024,
+      "parent_id": "paleozoic"
+    },
+
+      {
+        "id": "cisuralian",
+        "name": "Cisuralian",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 298.9,
+        "begin_uncertainty_ma": 0.15,
+        "end_time_ma": 274.4,
+        "end_uncertainty_ma": 0.4,
+        "parent_id": "permian"
+      },
+
+        {
+          "id": "asselian",
+          "name": "Asselian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 298.9,
+          "begin_uncertainty_ma": 0.15,
+          "end_time_ma": 293.52,
+          "end_uncertainty_ma": 0.17,
+          "parent_id": "cisuralian"
+        },
+
+        {
+          "id": "sakmarian",
+          "name": "Sakmarian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 293.52,
+          "begin_uncertainty_ma": 0.17,
+          "end_time_ma": 290.1,
+          "end_uncertainty_ma": 0.26,
+          "parent_id": "cisuralian"
+        },
+
+        {
+          "id": "artinskian",
+          "name": "Artinskian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 290.1,
+          "begin_uncertainty_ma": 0.26,
+          "end_time_ma": 283.3,
+          "end_uncertainty_ma": 0.4,
+          "parent_id": "cisuralian"
+        },
+
+        {
+          "id": "kungurian",
+          "name": "Kungurian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 283.3,
+          "begin_uncertainty_ma": 0.4,
+          "end_time_ma": 274.4,
+          "end_uncertainty_ma": 0.4,
+          "parent_id": "cisuralian"
+        },
+
+      {
+        "id": "guadalupian",
+        "name": "Guadalupian",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 274.4,
+        "begin_uncertainty_ma": 0.4,
+        "end_time_ma": 259.51,
+        "end_uncertainty_ma": 0.21,
+        "parent_id": "permian"
+      },
+
+        {
+          "id": "roadian",
+          "name": "Roadian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 274.4,
+          "begin_uncertainty_ma": 0.4,
+          "end_time_ma": 266.9,
+          "end_uncertainty_ma": 0.4,
+          "parent_id": "guadalupian"
+        },
+
+        {
+          "id": "wordian",
+          "name": "Wordian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 266.9,
+          "begin_uncertainty_ma": 0.4,
+          "end_time_ma": 264.28,
+          "end_uncertainty_ma": 0.16,
+          "parent_id": "guadalupian"
+        },
+
+        {
+          "id": "capitanian",
+          "name": "Capitanian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 264.28,
+          "begin_uncertainty_ma": 0.16,
+          "end_time_ma": 259.51,
+          "end_uncertainty_ma": 0.21,
+          "parent_id": "guadalupian"
+        },
+
+      {
+        "id": "lopingian",
+        "name": "Lopingian",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 259.51,
+        "begin_uncertainty_ma": 0.21,
+        "end_time_ma": 251.902,
+        "end_uncertainty_ma": 0.024,
+        "parent_id": "permian"
+      },
+
+        {
+          "id": "wuchiapingian",
+          "name": "Wuchiapingian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 259.51,
+          "begin_uncertainty_ma": 0.21,
+          "end_time_ma": 254.14,
+          "end_uncertainty_ma": 0.07,
+          "parent_id": "lopingian"
+        },
+
+        {
+          "id": "changhsingian",
+          "name": "Changhsingian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 254.14,
+          "begin_uncertainty_ma": 0.07,
+          "end_time_ma": 251.902,
+          "end_uncertainty_ma": 0.024,
+          "parent_id": "lopingian"
+        }
+]

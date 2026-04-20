@@ -11,159 +11,159 @@
     "parent_id": "precambrian"
   },
 
-  {
-    "id": "paleoproterozoic",
-    "name": "Paleoproterozoic",
-    "rank": "Era",
-    "rank_order": 3,
-    "begin_time_ma": 2500,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 1600,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "proterozoic"
-  },
+    {
+      "id": "paleoproterozoic",
+      "name": "Paleoproterozoic",
+      "rank": "Era",
+      "rank_order": 3,
+      "begin_time_ma": 2500,
+      "begin_uncertainty_ma": 0.0,
+      "end_time_ma": 1600,
+      "end_uncertainty_ma": 0.0,
+      "parent_id": "proterozoic"
+    },
 
-  {
-    "id": "siderian",
-    "name": "Siderian",
-    "rank": "Period",
-    "rank_order": 4,
-    "begin_time_ma": 2500,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 2300,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "paleoproterozoic"
-  },
+      {
+        "id": "siderian",
+        "name": "Siderian",
+        "rank": "Period",
+        "rank_order": 4,
+        "begin_time_ma": 2500,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 2300,
+        "end_uncertainty_ma": 0.0,
+        "parent_id": "paleoproterozoic"
+      },
 
-  {
-    "id": "rhyacian",
-    "name": "Rhyacian",
-    "rank": "Period",
-    "rank_order": 4,
-    "begin_time_ma": 2300,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 2050,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "paleoproterozoic"
-  },
+      {
+        "id": "rhyacian",
+        "name": "Rhyacian",
+        "rank": "Period",
+        "rank_order": 4,
+        "begin_time_ma": 2300,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 2050,
+        "end_uncertainty_ma": 0.0,
+        "parent_id": "paleoproterozoic"
+      },
 
-  {
-    "id": "orosirian",
-    "name": "Orosirian",
-    "rank": "Period",
-    "rank_order": 4,
-    "begin_time_ma": 2050,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 1800,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "paleoproterozoic"
-  },
+      {
+        "id": "orosirian",
+        "name": "Orosirian",
+        "rank": "Period",
+        "rank_order": 4,
+        "begin_time_ma": 2050,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 1800,
+        "end_uncertainty_ma": 0.0,
+        "parent_id": "paleoproterozoic"
+      },
 
-  {
-    "id": "statherian",
-    "name": "Statherian",
-    "rank": "Period",
-    "rank_order": 4,
-    "begin_time_ma": 1800,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 1600,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "paleoproterozoic"
-  },
+      {
+        "id": "statherian",
+        "name": "Statherian",
+        "rank": "Period",
+        "rank_order": 4,
+        "begin_time_ma": 1800,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 1600,
+        "end_uncertainty_ma": 0.0,
+        "parent_id": "paleoproterozoic"
+      },
 
-  {
-    "id": "mesoproterozoic",
-    "name": "Mesoproterozoic",
-    "rank": "Era",
-    "rank_order": 3,
-    "begin_time_ma": 1600,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 1000,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "proterozoic"
-  },
+    {
+      "id": "mesoproterozoic",
+      "name": "Mesoproterozoic",
+      "rank": "Era",
+      "rank_order": 3,
+      "begin_time_ma": 1600,
+      "begin_uncertainty_ma": 0.0,
+      "end_time_ma": 1000,
+      "end_uncertainty_ma": 0.0,
+      "parent_id": "proterozoic"
+    },
 
-  {
-    "id": "calymmian",
-    "name": "Calymmian",
-    "rank": "Period",
-    "rank_order": 4,
-    "begin_time_ma": 1600,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 1400,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "mesoproterozoic"
-  },
+      {
+        "id": "calymmian",
+        "name": "Calymmian",
+        "rank": "Period",
+        "rank_order": 4,
+        "begin_time_ma": 1600,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 1400,
+        "end_uncertainty_ma": 0.0,
+        "parent_id": "mesoproterozoic"
+      },
 
-  {
-    "id": "ectasian",
-    "name": "Ectasian",
-    "rank": "Period",
-    "rank_order": 4,
-    "begin_time_ma": 1400,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 1200,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "mesoproterozoic"
-  },
+      {
+        "id": "ectasian",
+        "name": "Ectasian",
+        "rank": "Period",
+        "rank_order": 4,
+        "begin_time_ma": 1400,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 1200,
+        "end_uncertainty_ma": 0.0,
+        "parent_id": "mesoproterozoic"
+      },
 
-  {
-    "id": "stenian",
-    "name": "Stenian",
-    "rank": "Period",
-    "rank_order": 4,
-    "begin_time_ma": 1200,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 1000,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "mesoproterozoic"
-  },
+      {
+        "id": "stenian",
+        "name": "Stenian",
+        "rank": "Period",
+        "rank_order": 4,
+        "begin_time_ma": 1200,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 1000,
+        "end_uncertainty_ma": 0.0,
+        "parent_id": "mesoproterozoic"
+      },
 
-  {
-    "id": "neoproterozoic",
-    "name": "Neoproterozoic",
-    "rank": "Era",
-    "rank_order": 3,
-    "begin_time_ma": 1000,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 538.8,
-    "end_uncertainty_ma": 0.6,
-    "parent_id": "proterozoic"
-  },
+    {
+      "id": "neoproterozoic",
+      "name": "Neoproterozoic",
+      "rank": "Era",
+      "rank_order": 3,
+      "begin_time_ma": 1000,
+      "begin_uncertainty_ma": 0.0,
+      "end_time_ma": 538.8,
+      "end_uncertainty_ma": 0.6,
+      "parent_id": "proterozoic"
+    },
 
-  {
-    "id": "tonian",
-    "name": "Tonian",
-    "rank": "Period",
-    "rank_order": 4,
-    "begin_time_ma": 1000,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 720,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "neoproterozoic"
-  },
+      {
+        "id": "tonian",
+        "name": "Tonian",
+        "rank": "Period",
+        "rank_order": 4,
+        "begin_time_ma": 1000,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 720,
+        "end_uncertainty_ma": 0.0,
+        "parent_id": "neoproterozoic"
+      },
 
-  {
-    "id": "cryogenian",
-    "name": "Cryogenian",
-    "rank": "Period",
-    "rank_order": 4,
-    "begin_time_ma": 720,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 635,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "neoproterozoic"
-  },
+      {
+        "id": "cryogenian",
+        "name": "Cryogenian",
+        "rank": "Period",
+        "rank_order": 4,
+        "begin_time_ma": 720,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 635,
+        "end_uncertainty_ma": 0.0,
+        "parent_id": "neoproterozoic"
+      },
 
-  {
-    "id": "ediacaran",
-    "name": "Ediacaran",
-    "rank": "Period",
-    "rank_order": 4,
-    "begin_time_ma": 635,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 538.8,
-    "end_uncertainty_ma": 0.6,
-    "parent_id": "neoproterozoic"
-  }
+      {
+        "id": "ediacaran",
+        "name": "Ediacaran",
+        "rank": "Period",
+        "rank_order": 4,
+        "begin_time_ma": 635,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 538.8,
+        "end_uncertainty_ma": 0.6,
+        "parent_id": "neoproterozoic"
+      }
 ]

@@ -11,411 +11,411 @@
     "parent_id": "phanerozoic"
   },
 
-  {
-    "id": "paleogene",
-    "name": "Paleogene",
-    "rank": "Period",
-    "rank_order": 4,
-    "begin_time_ma": 66,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 23.04,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "cenozoic"
-  },
+    {
+      "id": "paleogene",
+      "name": "Paleogene",
+      "rank": "Period",
+      "rank_order": 4,
+      "begin_time_ma": 66,
+      "begin_uncertainty_ma": 0.0,
+      "end_time_ma": 23.04,
+      "end_uncertainty_ma": 0.0,
+      "parent_id": "cenozoic"
+    },
 
-  {
-    "id": "paleocene",
-    "name": "Paleocene",
-    "rank": "Epoch",
-    "rank_order": 5,
-    "begin_time_ma": 66,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 56,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "paleogene"
-  },
+      {
+        "id": "paleocene",
+        "name": "Paleocene",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 66,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 56,
+        "end_uncertainty_ma": 0.0,
+        "parent_id": "paleogene"
+      },
 
-  {
-    "id": "danian",
-    "name": "Danian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 66,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 61.66,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "paleocene"
-  },
+        {
+          "id": "danian",
+          "name": "Danian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 66,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 61.66,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "paleocene"
+        },
 
-  {
-    "id": "selandian",
-    "name": "Selandian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 61.66,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 59.24,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "paleocene"
-  },
+        {
+          "id": "selandian",
+          "name": "Selandian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 61.66,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 59.24,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "paleocene"
+        },
 
-  {
-    "id": "thanetian",
-    "name": "Thanetian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 59.24,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 56,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "paleocene"
-  },
+        {
+          "id": "thanetian",
+          "name": "Thanetian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 59.24,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 56,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "paleocene"
+        },
 
-  {
-    "id": "eocene",
-    "name": "Eocene",
-    "rank": "Epoch",
-    "rank_order": 5,
-    "begin_time_ma": 56,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 33.9,
-    "end_uncertainty_ma": 0.28,
-    "parent_id": "paleogene"
-  },
+      {
+        "id": "eocene",
+        "name": "Eocene",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 56,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 33.9,
+        "end_uncertainty_ma": 0.28,
+        "parent_id": "paleogene"
+      },
 
-  {
-    "id": "ypresian",
-    "name": "Ypresian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 56,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 48.07,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "eocene"
-  },
+        {
+          "id": "ypresian",
+          "name": "Ypresian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 56,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 48.07,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "eocene"
+        },
 
-  {
-    "id": "lutetian",
-    "name": "Lutetian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 48.07,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 41.03,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "eocene"
-  },
+        {
+          "id": "lutetian",
+          "name": "Lutetian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 48.07,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 41.03,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "eocene"
+        },
 
-  {
-    "id": "bartonian",
-    "name": "Bartonian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 41.03,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 37.71,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "eocene"
-  },
+        {
+          "id": "bartonian",
+          "name": "Bartonian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 41.03,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 37.71,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "eocene"
+        },
 
-  {
-    "id": "priabonian",
-    "name": "Priabonian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 37.71,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 33.9,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "eocene"
-  },
+        {
+          "id": "priabonian",
+          "name": "Priabonian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 37.71,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 33.9,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "eocene"
+        },
 
-  {
-    "id": "oligocene",
-    "name": "Oligocene",
-    "rank": "Epoch",
-    "rank_order": 5,
-    "begin_time_ma": 33.9,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 23.04,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "paleogene"
-  },
+      {
+        "id": "oligocene",
+        "name": "Oligocene",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 33.9,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 23.04,
+        "end_uncertainty_ma": 0.0,
+        "parent_id": "paleogene"
+      },
 
-  {
-    "id": "rupelian",
-    "name": "Rupelian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 33.9,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 27.3,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "oligocene"
-  },
+        {
+          "id": "rupelian",
+          "name": "Rupelian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 33.9,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 27.3,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "oligocene"
+        },
 
-  {
-    "id": "chattian",
-    "name": "Chattian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 27.3,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 23.04,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "oligocene"
-  },
+        {
+          "id": "chattian",
+          "name": "Chattian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 27.3,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 23.04,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "oligocene"
+        },
 
-  {
-    "id": "neogene",
-    "name": "Neogene",
-    "rank": "Period",
-    "rank_order": 4,
-    "begin_time_ma": 23.04,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 2.58,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "cenozoic"
-  },
+    {
+      "id": "neogene",
+      "name": "Neogene",
+      "rank": "Period",
+      "rank_order": 4,
+      "begin_time_ma": 23.04,
+      "begin_uncertainty_ma": 0.0,
+      "end_time_ma": 2.58,
+      "end_uncertainty_ma": 0.0,
+      "parent_id": "cenozoic"
+    },
 
-  {
-    "id": "miocene",
-    "name": "Miocene",
-    "rank": "Epoch",
-    "rank_order": 5,
-    "begin_time_ma": 23.04,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 5.333,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "neogene"
-  },
+      {
+        "id": "miocene",
+        "name": "Miocene",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 23.04,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 5.333,
+        "end_uncertainty_ma": 0.0,
+        "parent_id": "neogene"
+      },
 
-  {
-    "id": "aquitanian",
-    "name": "Aquitanian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 23.04,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 20.45,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "miocene"
-  },
+        {
+          "id": "aquitanian",
+          "name": "Aquitanian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 23.04,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 20.45,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "miocene"
+        },
 
-  {
-    "id": "burdigalian",
-    "name": "Burdigalian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 20.45,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 15.98,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "miocene"
-  },
+        {
+          "id": "burdigalian",
+          "name": "Burdigalian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 20.45,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 15.98,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "miocene"
+        },
 
-  {
-    "id": "langhian",
-    "name": "Langhian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 15.98,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 13.82,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "miocene"
-  },
+        {
+          "id": "langhian",
+          "name": "Langhian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 15.98,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 13.82,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "miocene"
+        },
 
-  {
-    "id": "serravallian",
-    "name": "Serravallian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 13.82,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 11.63,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "miocene"
-  },
+        {
+          "id": "serravallian",
+          "name": "Serravallian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 13.82,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 11.63,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "miocene"
+        },
 
-  {
-    "id": "tortonian",
-    "name": "Tortonian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 11.63,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 7.246,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "miocene"
-  },
+        {
+          "id": "tortonian",
+          "name": "Tortonian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 11.63,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 7.246,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "miocene"
+        },
 
-  {
-    "id": "messinian",
-    "name": "Messinian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 7.246,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 5.333,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "miocene"
-  },
+        {
+          "id": "messinian",
+          "name": "Messinian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 7.246,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 5.333,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "miocene"
+        },
 
-  {
-    "id": "pliocene",
-    "name": "Pliocene",
-    "rank": "Epoch",
-    "rank_order": 5,
-    "begin_time_ma": 5.333,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 2.58,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "neogene"
-  },
+      {
+        "id": "pliocene",
+        "name": "Pliocene",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 5.333,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 2.58,
+        "end_uncertainty_ma": 0.0,
+        "parent_id": "neogene"
+      },
 
-  {
-    "id": "zanclean",
-    "name": "Zanclean",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 5.333,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 3.6,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "pliocene"
-  },
+        {
+          "id": "zanclean",
+          "name": "Zanclean",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 5.333,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 3.6,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "pliocene"
+        },
 
-  {
-    "id": "piacenzian",
-    "name": "Piacenzian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 3.6,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 2.58,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "pliocene"
-  },
+        {
+          "id": "piacenzian",
+          "name": "Piacenzian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 3.6,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 2.58,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "pliocene"
+        },
 
-  {
-    "id": "quaternary",
-    "name": "Quaternary",
-    "rank": "Period",
-    "rank_order": 4,
-    "begin_time_ma": 2.58,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 0.0,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "cenozoic"
-  },
+    {
+      "id": "quaternary",
+      "name": "Quaternary",
+      "rank": "Period",
+      "rank_order": 4,
+      "begin_time_ma": 2.58,
+      "begin_uncertainty_ma": 0.0,
+      "end_time_ma": 0.0,
+      "end_uncertainty_ma": 0.0,
+      "parent_id": "cenozoic"
+    },
 
-  {
-    "id": "pleistocene",
-    "name": "Pleistocene",
-    "rank": "Epoch",
-    "rank_order": 5,
-    "begin_time_ma": 2.58,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 0.0117,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "quaternary"
-  },
+      {
+        "id": "pleistocene",
+        "name": "Pleistocene",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 2.58,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 0.0117,
+        "end_uncertainty_ma": 0.0,
+        "parent_id": "quaternary"
+      },
 
-  {
-    "id": "gelasian",
-    "name": "Gelasian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 2.58,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 1.8,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "pleistocene"
-  },
+        {
+          "id": "gelasian",
+          "name": "Gelasian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 2.58,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 1.8,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "pleistocene"
+        },
 
-  {
-    "id": "calabrian",
-    "name": "Calabrian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 1.8,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 0.774,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "pleistocene"
-  },
+        {
+          "id": "calabrian",
+          "name": "Calabrian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 1.8,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 0.774,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "pleistocene"
+        },
 
-  {
-    "id": "chibanian",
-    "name": "Chibanian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 0.774,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 0.129,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "pleistocene"
-  },
+        {
+          "id": "chibanian",
+          "name": "Chibanian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 0.774,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 0.129,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "pleistocene"
+        },
 
-  {
-    "id": "late-pleistocene",
-    "name": "Late Pleistocene",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 0.129,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 0.0117,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "pleistocene"
-  },
+        {
+          "id": "late-pleistocene",
+          "name": "Late Pleistocene",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 0.129,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 0.0117,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "pleistocene"
+        },
 
-  {
-    "id": "holocene",
-    "name": "Holocene",
-    "rank": "Epoch",
-    "rank_order": 5,
-    "begin_time_ma": 0.0117,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 0.0,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "quaternary"
-  },
+      {
+        "id": "holocene",
+        "name": "Holocene",
+        "rank": "Epoch",
+        "rank_order": 5,
+        "begin_time_ma": 0.0117,
+        "begin_uncertainty_ma": 0.0,
+        "end_time_ma": 0.0,
+        "end_uncertainty_ma": 0.0,
+        "parent_id": "quaternary"
+      },
 
-  {
-    "id": "greenlandian",
-    "name": "Greenlandian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 0.0117,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 0.0082,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "holocene"
-  },
+        {
+          "id": "greenlandian",
+          "name": "Greenlandian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 0.0117,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 0.0082,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "holocene"
+        },
 
-  {
-    "id": "northgrippian",
-    "name": "Northgrippian",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 0.0082,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 0.0042,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "holocene"
-  },
+        {
+          "id": "northgrippian",
+          "name": "Northgrippian",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 0.0082,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 0.0042,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "holocene"
+        },
 
-  {
-    "id": "meghalayan",
-    "name": "Meghalayan",
-    "rank": "Age",
-    "rank_order": 6,
-    "begin_time_ma": 0.0042,
-    "begin_uncertainty_ma": 0.0,
-    "end_time_ma": 0.0,
-    "end_uncertainty_ma": 0.0,
-    "parent_id": "holocene"
-  }
+        {
+          "id": "meghalayan",
+          "name": "Meghalayan",
+          "rank": "Age",
+          "rank_order": 6,
+          "begin_time_ma": 0.0042,
+          "begin_uncertainty_ma": 0.0,
+          "end_time_ma": 0.0,
+          "end_uncertainty_ma": 0.0,
+          "parent_id": "holocene"
+        }
 ]
