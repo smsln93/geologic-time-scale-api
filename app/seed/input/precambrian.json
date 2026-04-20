@@ -1,0 +1,13 @@
+[
+  {
+    "id": "precambrian",
+    "name": "Precambrian",
+    "rank": "Supereon",
+    "rank_order": 1,
+    "begin_time_ma": 4567,
+    "begin_uncertainty_ma": 0.0,
+    "end_time_ma": 538.8,
+    "end_uncertainty_ma": 0.6,
+    "parent_id": null
+  }
+]

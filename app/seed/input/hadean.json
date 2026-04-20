@@ -1,0 +1,13 @@
+[
+  {
+    "id": "hadean",
+    "name": "Hadean",
+    "rank": "Eon",
+    "rank_order": 2,
+    "begin_time_ma": 4567,
+    "begin_uncertainty_ma": 0.0,
+    "end_time_ma": 4031,
+    "end_uncertainty_ma": 0.3,
+    "parent_id": "precambrian"
+  }
+]

@@ -1,0 +1,61 @@
+[
+  {
+    "id": "archean",
+    "name": "Archean",
+    "rank": "Eon",
+    "rank_order": 2,
+    "begin_time_ma": 4031,
+    "begin_uncertainty_ma": 0.3,
+    "end_time_ma": 2500,
+    "end_uncertainty_ma": 0.0,
+    "parent_id": "precambrian"
+  },
+
+  {
+    "id": "eoarchean",
+    "name": "Eoarchean",
+    "rank": "Era",
+    "rank_order": 3,
+    "begin_time_ma": 4031,
+    "begin_uncertainty_ma": 0.3,
+    "end_time_ma": 3600,
+    "end_uncertainty_ma": 0.0,
+    "parent_id": "archean"
+  },
+
+  {
+    "id": "paleoarchean",
+    "name": "Paleoarchean",
+    "rank": "Era",
+    "rank_order": 3,
+    "begin_time_ma": 3600,
+    "begin_uncertainty_ma": 0.0,
+    "end_time_ma": 3200,
+    "end_uncertainty_ma": 0.0,
+    "parent_id": "archean"
+  },
+
+  {
+    "id": "mesoarchean",
+    "name": "Mesoarchean",
+    "rank": "Era",
+    "rank_order": 3,
+    "begin_time_ma": 3200,
+    "begin_uncertainty_ma": 0.0,
+    "end_time_ma": 2800,
+    "end_uncertainty_ma": 0.0,
+    "parent_id": "archean"
+  },
+
+  {
+    "id": "neoarchean",
+    "name": "Neoarchean",
+    "rank": "Era",
+    "rank_order": 3,
+    "begin_time_ma": 2800,
+    "begin_uncertainty_ma": 0.0,
+    "end_time_ma": 2500,
+    "end_uncertainty_ma": 0.0,
+    "parent_id": "archean"
+  }
+]
