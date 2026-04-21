@@ -1,9 +1,9 @@
-from typing import Literal, Optional, List
+from typing import Literal, Optional
 
 from pydantic import BaseModel, model_validator, ConfigDict
 
 from app.utils.time_value_formatter import format_description_representation
-from app.models.chronostratigraphic_unit_model import ChronostratigraphicUnitDB
+
 
 class ChronostratigraphicUnitCreate(BaseModel):
     id: str
@@ -53,6 +53,31 @@ class ChronostratigraphicUnitRead(BaseModel):
     end_uncertainty_ma: float = 0.0
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class ChronostratigraphicUnitUpdate(BaseModel):
+    name: Optional[str] = None
+    rank: Optional[str] = None
+
+    parent_id: Optional[str] = None
+
+    begin_time_ma: Optional[float] = None
+    begin_uncertainty_ma: Optional[float] = None
+    end_time_ma: Optional[float] = None
+    end_uncertainty_ma: Optional[float] = None
+
+
+class ChronostratigraphicUnitReplace(BaseModel):
+    name: str
+    rank: str
+
+    parent_id: Optional[str] = None
+
+    begin_time_ma: float
+    begin_uncertainty_ma: float
+    end_time_ma: float
+    end_uncertainty_ma: float
+
 
 
 class UnitDescription(BaseModel):

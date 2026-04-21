@@ -11,6 +11,7 @@ from app.schemas.chronostratigraphic_unit import (ChronostratigraphicUnitCreate,
                                                   ChronostratigraphicUnitFormatter, ChronostratigraphicUnitService)
 from app.utils.time_value_formatter import format_duration_representation
 from app.api.router import api_router
+from app.domain.rank import Rank
 
 
 @api_router.get(path="/units",
@@ -167,6 +168,8 @@ def create_unit(payload: ChronostratigraphicUnitCreate, db: Session = Depends(ge
 
     unit = ChronostratigraphicUnitDB(**payload.model_dump())
 
+    unit.rank_order = Rank(unit.rank).order
+
     db.add(unit)
     db.commit()
     db.refresh(unit)
@@ -177,14 +180,21 @@ def create_unit(payload: ChronostratigraphicUnitCreate, db: Session = Depends(ge
                 tags=["Geologic Time Scale Units (WRITE)"],
                 dependencies=[Depends(verify_api_key)],
                 response_model=ChronostratigraphicUnitRead,
-                summary="Update unit",
-                description="Returns updated unit")
-def update_unit(unit_id: str, payload: ChronostratigraphicUnitCreate, db: Session = Depends(get_db)):
+                summary="Replace all data in unit",
+                description="Returns replaced unit")
+def replace_unit(unit_id: str, payload: ChronostratigraphicUnitReplace, db: Session = Depends(get_db)):
 
     unit = db.query(ChronostratigraphicUnitDB).filter_by(id=unit_id).first()
 
-    for key, value in payload.model_dump().items():
+    if not unit:
+        raise HTTPException(status_code=404, detail="Unit not found")
+
+    new_data = payload.model_dump()
+
+    for key, value in new_data.items():
         setattr(unit, key, value)
+
+    unit.rank_order = Rank(unit.rank).order
 
     db.commit()
     db.refresh(unit)
@@ -198,12 +208,20 @@ def update_unit(unit_id: str, payload: ChronostratigraphicUnitCreate, db: Sessio
                   response_model=ChronostratigraphicUnitRead,
                   summary="Update parts of the unit",
                   description="Returns updated unit")
-def update_unit(unit_id: str, payload: ChronostratigraphicUnitCreate, db: Session = Depends(get_db)):
+def update_unit(unit_id: str, payload: ChronostratigraphicUnitUpdate, db: Session = Depends(get_db)):
 
     unit = db.query(ChronostratigraphicUnitDB).filter_by(id=unit_id).first()
 
-    for key, value in payload.model_dump(exclude_unset=True).items():
+    if not unit:
+        raise HTTPException(status_code=404, detail="Unit not found")
+
+    update_data= payload.model_dump(exclude_unset=True)
+
+    for key, value in update_data.items():
         setattr(unit, key, value)
+
+    if "rank" in update_data:
+        unit.rank_order = Rank(unit.rank).order
 
     db.commit()
     db.refresh(unit)
@@ -216,7 +234,7 @@ def update_unit(unit_id: str, payload: ChronostratigraphicUnitCreate, db: Sessio
                    dependencies=[Depends(verify_api_key)],
                    summary="Delete unit",
                    description="Deletes unit")
-def update_unit(unit_id: str, db: Session = Depends(get_db)):
+def delete_unit(unit_id: str, db: Session = Depends(get_db)):
 
     unit = db.query(ChronostratigraphicUnitDB).filter_by(id=unit_id).first()
 
