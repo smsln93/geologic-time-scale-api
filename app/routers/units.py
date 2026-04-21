@@ -223,6 +223,9 @@ def update_unit(unit_id: str, db: Session = Depends(get_db)):
     if not unit:
         raise HTTPException(status_code=404, detail="Unit not found")
 
+    if unit.children:
+        raise HTTPException(status_code=400, detail="Cannot delete unit with child units")
+
     db.delete(unit)
     db.commit()
 
