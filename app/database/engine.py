@@ -2,7 +2,7 @@ from pathlib import Path
 
 from sqlalchemy import create_engine
 
-from app.config.config import app_configuration
+from app.core.config import app_configuration
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent

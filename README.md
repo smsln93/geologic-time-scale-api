@@ -13,6 +13,7 @@ The project includes a SQLite database, seed data loader, and export functionali
 * Export data to CSV and to JSON
 * Seed system based on JSON files
 * SQLite database (local development)
+* pytest-based API tests with isolated test database (SQLite in-memory)
 
 ---
 
@@ -33,14 +34,24 @@ The project includes a SQLite database, seed data loader, and export functionali
 app/
   main.py
 
-  config/         # environment configuration
+  core/           # environment configuration loader
   database/       # SQLAlchemy engine, session, DB file
+  enums/          # domain-level enumerations
   models/         # ORM models
-  schemas/        # Pydantic schemas
   routers/        # API endpoints
-  seed/           # database seeding from JSON
+  schemas/        # Pydantic schemas
+  seed/           # database seeding from JSON (standalone script)
+  services/       # data export service
   utils/          # helper functions (formatters)
-  exports/        # generated files (CSV, etc.)
+
+exports/          # generated files (CSV, etc.)
+tests/            # automated tests (pytest)
+
+run.py            # application entrypoint used to start API locally
+pytest.ini        # pytest configuration
+.env              # environment variables (not committed)
+.env.example      # template for required configuration
+requirements.txt  # project dependencies
 ```
 
 ---
@@ -71,6 +82,11 @@ API_BASE_URL=http://127.0.0.1:8000/geologic-time-scale-api/v1
 DATABASE_URL=sqlite:///./app/database/data/geologic-time-scale-app.db
 ```
 ### 5. Run application
+You can start the API using the provided entrypoint:
+```bash
+python run.py
+```
+Alternatively, you can run it directly with Uvicorn:
 ```bash
 uvicorn app.main:app --reload
 ```
