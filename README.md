@@ -116,6 +116,10 @@ Optional filters:
 GET /units?rank=Period&parent_id=pharenozoic
 GET /units?at_time=100
 GET /units?before=250&after=100
+
+Filters `before` and `after` use strict inequalities (<, >).
+Values equal to the boundary are excluded.
+
 ```
 ### Get unit by ID (public)
 ```

@@ -59,14 +59,14 @@ def get_units(rank: Optional[str] = None,
                              ChronostratigraphicUnitDB.end_time_ma <= at_time)
 
     if before not in (None, "", " "):
-        query = query.filter(ChronostratigraphicUnitDB.begin_time_ma > before)
+        query = query.filter(ChronostratigraphicUnitDB.end_time_ma > before)
 
     if after not in (None, "", " "):
-        query = query.filter(ChronostratigraphicUnitDB.end_time_ma < after)
+        query = query.filter(ChronostratigraphicUnitDB.begin_time_ma < after)
 
     if before is not None and after is not None:
-        if before >= after:
-            raise HTTPException(status_code=400, detail="Invalid range: 'after' must be greater than 'before'")
+        if before <= after:
+            raise HTTPException(status_code=400, detail="Invalid range: 'before' must be greater than 'after'")
 
     return query.all()
 
@@ -124,7 +124,11 @@ def get_parent_unit(unit_id: str, db: Session = Depends(get_db)):
     if not unit:
         raise HTTPException(status_code=404, detail="Unit not found")
 
-    return unit.parent
+    if not unit.parent_id:
+        raise HTTPException(status_code=404, detail="Parent unit not found")
+
+    parent_unit = db.query(ChronostratigraphicUnitDB).filter_by(id=unit.parent_id).first()
+    return ChronostratigraphicUnitRead.model_validate(parent_unit)
 
 
 @units_router.get(path="/{unit_id}/path",

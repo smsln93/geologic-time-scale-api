@@ -87,11 +87,11 @@ def mesozoic_unit(session):
         id="mesozoic",
         name="Mesozoic",
         rank="Era",
-        rank_order=2,
-        begin_time_ma=250.0,
-        begin_uncertainty_ma=1.5,
+        rank_order=3,
+        begin_time_ma=251.902,
+        begin_uncertainty_ma=0.024,
         end_time_ma=66.0,
-        end_uncertainty_ma=0.6,
+        end_uncertainty_ma=0.0,
         parent_id=None
     )
 
@@ -99,10 +99,10 @@ def mesozoic_unit(session):
         id="jurassic",
         name="Jurassic",
         rank="Period",
-        rank_order=2,
-        begin_time_ma=200.0,
-        begin_uncertainty_ma=1.5,
-        end_time_ma=140.0,
+        rank_order=4,
+        begin_time_ma=201.4,
+        begin_uncertainty_ma=0.2,
+        end_time_ma=143.1,
         end_uncertainty_ma=0.6,
         parent_id="mesozoic")
 
