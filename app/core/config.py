@@ -2,14 +2,24 @@ from pathlib import Path
 
 from dotenv import dotenv_values
 
-from .config_paths import ENV_FILE
+from .paths import ENV_FILE
 
 class Config:
     """
-    Loads API_KEY, API_BASE_URL and DATABASE_URL values from the .env file.
+    Application configuration loader based on a .env file.
+
+    Loads required environment variables and exposes them
+    as class attributes.
 
     Attributes:
         env_config_path (Path): Path to the .env file.
+        api_key (str | None): API authentication key.
+        api_base_url (str): Base URL for the API.
+        database_url (str): Database connection string.
+
+    Raises:
+        RuntimeError: If the .env file is missing or required
+        variables are not defined.
     """
     def __init__(self, env_config_path: Path) -> None:
         self.env_config_path = env_config_path
@@ -29,7 +39,7 @@ class Config:
 
     def _required(self, key: str) -> str:
         value = self.env_variables.get(key)
-        if not value:
+        if value is None or value == "":
             raise RuntimeError(f"Missing env variable: {key}")
         return value
 

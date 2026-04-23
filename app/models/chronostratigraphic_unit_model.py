@@ -20,13 +20,12 @@ class ChronostratigraphicUnitDB(Base):
     parent_id = Column(String, ForeignKey("chronostratigraphic_units.id"))
 
     parent = relationship(
-        "ChronostratigraphicUnitDB",
+        argument="ChronostratigraphicUnitDB",
         remote_side=[id],
         back_populates="children"
     )
 
     children = relationship(
-        "ChronostratigraphicUnitDB",
+        argument="ChronostratigraphicUnitDB",
         back_populates="parent"
     )
-
