@@ -1,6 +1,6 @@
 # geologic-time-scale-api
-A FastAPI-based REST API for exploring the geologic time scale hierarchy (eons, eras, periods, epochs, ages).  
-The project includes a SQLite database, seed data loader, and export functionality.
+A FastAPI-based REST API for exploring the geologic time scale hierarchy (eons, eras, periods, epochs, ages).
+The project includes a SQLite database and data export functionality.
 
 ---
 
