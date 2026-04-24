@@ -93,6 +93,11 @@ uvicorn app.main:app --reload
 
 ---
 
+## Database
+The project uses a local SQLite database (`app/database/data/geologic-time-scale-app.db`) 
+containing data based on the International Chronostratigraphic Chart (v2024-12).
+
+---
 ## API Documentation
 
 After running the server:
@@ -232,7 +237,8 @@ Key objectives:
 
 * [x] Add full CRUD endpoints for chronostratigraphic units
 * [x] Extend input JSON dataset with additional chronostratigraphic units
-* [ ] Implement automated tests (unit and integration)
+* [x] Implement automated tests (unit and integration)
+* [ ] Add working script that will be used to initialize the database with predefined data
 * [ ] Add Docker support for containerized deployment
 * [ ] Introduce `pyproject.toml` for project configuration and dependency management
 

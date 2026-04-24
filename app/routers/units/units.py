@@ -89,6 +89,7 @@ def get_unit(unit_id: str, db: Session = Depends(get_db)):
 
 
 @units_router.get(path="/{unit_id}/description",
+                  tags=[TAG_UNITS_READ],
                   response_model=UnitDescription,
                   summary="Get unit description",
                   description="Returns the description of the geologic unit")
