@@ -1,3 +1,6 @@
+import sqlite3
+from sqlite3 import IntegrityError
+from sqlalchemy.exc import IntegrityError
 from typing import Optional, Dict, List
 
 from fastapi import Depends, HTTPException, APIRouter
@@ -178,17 +181,30 @@ def get_unit_duration(unit_id: str, db: Session = Depends(get_db)):
                    tags=[TAG_UNITS_WRITE],
                    dependencies=[Depends(verify_api_key)],
                    response_model=ChronostratigraphicUnitRead,
+                   status_code=201,
                    summary="Create unit",
                    description="Returns newly created unit")
 def create_unit(payload: ChronostratigraphicUnitCreate, db: Session = Depends(get_db)):
 
+    if payload.parent_id:
+        parent = db.get(ChronostratigraphicUnitDB, payload.parent_id)
+
+        if not parent:
+            raise HTTPException(
+                status_code=422,
+                detail="Parent unit does not exist"
+            )
+
     unit = ChronostratigraphicUnitDB(**payload.model_dump())
-
     unit.rank_order = Rank(unit.rank).order
-
     db.add(unit)
-    db.commit()
-    db.refresh(unit)
+
+    try:
+        db.commit()
+        db.refresh(unit)
+    except (IntegrityError, sqlite3.IntegrityError):
+        db.rollback()
+        raise HTTPException(status_code=409, detail="Unit already exists")
 
     return unit
 
@@ -201,7 +217,6 @@ def create_unit(payload: ChronostratigraphicUnitCreate, db: Session = Depends(ge
 def replace_unit(unit_id: str, payload: ChronostratigraphicUnitReplace, db: Session = Depends(get_db)):
 
     unit = db.query(ChronostratigraphicUnitDB).filter_by(id=unit_id).first()
-
     if not unit:
         raise HTTPException(status_code=404, detail="Unit not found")
 
@@ -248,6 +263,7 @@ def update_unit(unit_id: str, payload: ChronostratigraphicUnitUpdate, db: Sessio
 @units_router.delete(path="/{unit_id}",
                      tags=[TAG_UNITS_WRITE],
                      dependencies=[Depends(verify_api_key)],
+                     status_code=204,
                      summary="Delete unit",
                      description="Deletes unit")
 def delete_unit(unit_id: str, db: Session = Depends(get_db)):

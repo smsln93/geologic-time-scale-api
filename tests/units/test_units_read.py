@@ -7,12 +7,11 @@ def test_get_pleistocene_epoch(client, pleistocene_unit):
     res = client.get("/geologic-time-scale-api/v1/units/pleistocene")
     assert res.status_code == 200
 
-    data = res.json()
-    assert isinstance(data, dict)
+    unit = res.json()
+    assert isinstance(unit, dict)
 
-    assert_unit_has_required_properties(data)
-
-    assert_unit(data,
+    assert_unit_has_required_properties(unit)
+    assert_unit(unit,
                 expected_id="pleistocene",
                 expected_name="Pleistocene",
                 expected_rank="Epoch",
@@ -35,7 +34,6 @@ def test_get_list_of_all_units(client, mesozoic_unit, pleistocene_unit):
 
     units = res.json()
     assert isinstance(units, list)
-
     assert len(units) == 5  # mesozoic, jurassic, middle-jurassic, callovian, pleistocene
 
     for unit in units:
@@ -124,7 +122,6 @@ def test_units_filter_by_rank(client, mesozoic_unit):
     unit = units[0]
     assert isinstance(unit, dict)
     assert_unit_has_required_properties(unit)
-    print(unit)
 
     assert_unit(unit,
             expected_id="callovian",
@@ -220,7 +217,6 @@ def test_units_filter_by_after(client, mesozoic_unit, pleistocene_unit):
 
     units = res.json()
     assert isinstance(units, list)
-
     assert len(units) == 2  # callovian, pleistocene
 
     for unit in units:
@@ -316,20 +312,20 @@ def test_check_if_no_children_returns_empty_list(client, mesozoic_unit):
     res = client.get("/geologic-time-scale-api/v1/units/callovian/child_units")
     assert res.status_code == 200
 
-    data = res.json()
-    assert isinstance(data, list)
-    assert data == []
+    unit = res.json()
+    assert isinstance(unit, list)
+    assert unit == []
 
 
 def test_get_jurassic_duration(client, mesozoic_unit):
     res = client.get("/geologic-time-scale-api/v1/units/jurassic/duration")
     assert res.status_code == 200
 
-    data = res.json()
-    assert isinstance(data, dict)
+    unit_duration = res.json()
+    assert isinstance(unit_duration, dict)
 
-    assert data.get("duration_ma") == pytest.approx(58.300)
-    assert data.get("formatted_duration") == "58.300 Ma"
+    assert unit_duration.get("duration_ma") == pytest.approx(58.300)
+    assert unit_duration.get("formatted_duration") == "58.300 Ma"
 
 
 def test_get_duration_of_nonexistent_unit(client, mesozoic_unit):
@@ -341,19 +337,17 @@ def test_get_pleistocene_description(client, pleistocene_unit):
     res = client.get("/geologic-time-scale-api/v1/units/pleistocene/description")
     assert res.status_code == 200
 
-    data = res.json()
-    assert isinstance(data, dict)
+    unit_description = res.json()
+    assert isinstance(unit_description, dict)
 
-    assert data.get("description") == "Pleistocene - Epoch lasted from 2.58 Ma to 11.7 ka"
+    assert unit_description.get("description") == "Pleistocene - Epoch lasted from 2.58 Ma to 11.7 ka"
 
 
 def test_get_callovian_path(client, mesozoic_unit):
     res = client.get("/geologic-time-scale-api/v1/units/callovian/path")
     assert res.status_code == 200
 
-    data = res.json()
-    print(data)
+    unit_path = res.json()
+    assert isinstance(unit_path, dict)
 
-    assert isinstance(data, dict)
-
-    assert data["path"] == ["Mesozoic", "Jurassic", "Middle Jurassic", "Callovian"]
+    assert unit_path["path"] == ["Mesozoic", "Jurassic", "Middle Jurassic", "Callovian"]

@@ -1,7 +1,11 @@
 from sqlalchemy.orm import sessionmaker
 
+from app.database.engine import get_database_engine
 
-def create_session_local(engine):
+
+def create_session_local():
+    engine = get_database_engine()
+
     return sessionmaker(
         autocommit=False,
         autoflush=False,
@@ -9,11 +13,11 @@ def create_session_local(engine):
     )
 
 
-def get_db(session_local):
-    def _get_db():
-        db = session_local()
-        try:
-            yield db
-        finally:
-            db.close()
-    return _get_db
+def get_db():
+    SessionLocal = create_session_local()
+
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

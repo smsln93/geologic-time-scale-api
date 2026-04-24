@@ -66,6 +66,8 @@ class ChronostratigraphicUnitUpdate(BaseModel):
     end_time_ma: Optional[float] = None
     end_uncertainty_ma: Optional[float] = None
 
+    model_config = ConfigDict(extra="forbid")
+
 
 class ChronostratigraphicUnitReplace(BaseModel):
     name: str

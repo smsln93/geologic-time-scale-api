@@ -2,7 +2,7 @@ from pathlib import Path
 
 from sqlalchemy import create_engine
 
-from app.core.config import app_configuration
+from app.core.dependency import get_config
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -15,7 +15,8 @@ def get_database_engine():
         Handles SQLite-specific behavior such as resolving relative paths
         and ensuring the database directory exists.
     """
-    raw_url_db = app_configuration.database_url
+    config = get_config()
+    raw_url_db = config.database_url
 
     if raw_url_db.startswith("sqlite:///"):
         relative_path = raw_url_db.replace("sqlite:///", "")
@@ -33,5 +34,3 @@ def get_database_engine():
         db_url,
         connect_args=connect_args
     )
-
-engine = get_database_engine()

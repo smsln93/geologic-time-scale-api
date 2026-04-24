@@ -1,13 +1,8 @@
 from fastapi import FastAPI
+from dotenv import load_dotenv
+load_dotenv()
 
 from app.routers.router import api_router
-
-
-from app.database.engine import engine
-from app.database.session import create_session_local
-
-
-SessionLocal = create_session_local(engine)
 
 
 app = FastAPI(

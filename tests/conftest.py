@@ -1,8 +1,10 @@
+import os
+
 import pytest
 from fastapi.testclient import TestClient
+from sqlalchemy.orm import sessionmaker
 
-from app.database.session import create_session_local, get_db
-from app.core.security import verify_api_key
+from app.database.session import get_db
 from app.main import app
 from app.models.chronostratigraphic_unit_model import ChronostratigraphicUnitDB
 
@@ -16,13 +18,20 @@ test_engine = create_engine(TestSettings.TEST_DATABASE_URL,
                             connect_args={"check_same_thread": False},
                             poolclass=StaticPool)
 
-TestingSessionLocal = create_session_local(test_engine)
+TestingSessionLocal = sessionmaker(bind=test_engine,
+                                   autoflush=False,
+                                   autocommit=False)
 
-
-@pytest.fixture(autouse=True)
+@pytest.fixture(scope="function", autouse=True)
 def override_dependencies():
-    app.dependency_overrides[get_db] = get_db(TestingSessionLocal)
-    app.dependency_overrides[verify_api_key] = lambda: TestSettings.TEST_API_KEY
+    def override_get_db():
+        db = TestingSessionLocal()
+        try:
+            yield db
+        finally:
+            db.close()
+
+    app.dependency_overrides[get_db] = override_get_db
 
     yield
 
@@ -41,14 +50,10 @@ def reset_db():
     Base.metadata.create_all(test_engine)
 
 
-@pytest.fixture
-def session():
-    db = TestingSessionLocal()
-    try:
-        yield db
-        db.rollback()
-    finally:
-        db.close()
+@pytest.fixture(autouse=True)
+def env_setup():
+    os.environ["API_KEY"] = TestSettings.TEST_API_KEY
+    os.environ["DATABASE_URL"] = TestSettings.TEST_DATABASE_URL
 
 
 @pytest.fixture
@@ -62,7 +67,16 @@ def invalid_authentication_header():
 
 
 @pytest.fixture
-def pleistocene_unit(session):
+def auth_client(client):
+    client.headers.update({"X-API-Key": TestSettings.TEST_API_KEY})
+    return client
+
+
+@pytest.fixture
+def pleistocene_unit():
+
+    db = TestingSessionLocal()
+
     pleistocene = ChronostratigraphicUnitDB(
         id="pleistocene",
         name="Pleistocene",
@@ -75,13 +89,15 @@ def pleistocene_unit(session):
         parent_id=None,
     )
 
-    session.add(pleistocene)
-    session.commit()
+    db.add(pleistocene)
+    db.commit()
     return pleistocene
 
 
 @pytest.fixture
-def mesozoic_unit(session):
+def mesozoic_unit():
+
+    db = TestingSessionLocal()
 
     mesozoic = ChronostratigraphicUnitDB(
         id="mesozoic",
@@ -130,6 +146,6 @@ def mesozoic_unit(session):
         parent_id="middle-jurassic"
     )
 
-    session.add_all([mesozoic, jurassic, middle_jurassic, callovian])
-    session.commit()
+    db.add_all([mesozoic, jurassic, middle_jurassic, callovian])
+    db.commit()
     return mesozoic
