@@ -15,8 +15,6 @@ export_router = APIRouter(prefix="/export", tags=["Export"])
                    description="Exports all geologic units as a downloadable CSV file")
 def export_units_csv(db: Session = Depends(get_db)):
     units = db.query(ChronostratigraphicUnitDB).all()
-    if not units:
-        raise HTTPException(status_code=404, detail="No data available to export")
 
     csv_filepath = ExportService.export_units_to_csv(units)
 
@@ -32,8 +30,6 @@ def export_units_csv(db: Session = Depends(get_db)):
                    description="Exports all geologic units as a downloadable JSON file")
 def export_units_json(db: Session = Depends(get_db)):
     units = db.query(ChronostratigraphicUnitDB).all()
-    if not units:
-        raise HTTPException(status_code=404, detail="No seed to export")
 
     json_filepath = ExportService.export_units_to_json(units)
 
