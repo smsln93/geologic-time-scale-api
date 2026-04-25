@@ -1,30 +1,42 @@
 # geologic-time-scale-api
-A FastAPI-based REST API for exploring the geologic time scale hierarchy (eons, eras, periods, epochs, ages).
+A FastAPI-based REST API for exploring the geologic timescale hierarchy (eons, eras, periods, epochs, ages).
 The project includes a SQLite database and data export functionality.
 
 ---
 
 ## Features
 
-* Hierarchical representation of geologic time units
-* Parent/child relationships
-* Unit metadata (name, rank, time range)
-* Duration and short description
-* Export data to CSV and to JSON
-* Seed system based on JSON files
-* SQLite database (local development)
-* pytest-based API tests with isolated test database (SQLite in-memory)
+- hierarchical representation of geologic time units
+- parent/child relationships between units
+- unit metadata (name, rank, time range, duration, description)
+- data export to CSV and JSON
+- optional database seeding via JSON-based script
+- SQLite database for local development
+- automated pytest-based test suite
+- CI integration via GitHub Actions
+
+---
+
+## Objectives
+
+This project implements a backend system for managing and serving geologic time scale data using FastAPI and SQLAlchemy.
+
+Key objectives:
+
+- model hierarchical geologic time as a relational dataset
+- expose structured geological data through a RESTful API
+- optional dataset initialization via script using JSON files
+- validate system correctness through automated testing
 
 ---
 
 ## Tech Stack
 
-* Python 3.14+
-* FastAPI
-* SQLAlchemy
-* SQLite
-* Pydantic
-* Uvicorn
+- **Backend:** FastAPI, Uvicorn
+- **Database ORM:** SQLAlchemy
+- **Data validation:** Pydantic
+- **Testing:** Pytest, HTTPX
+- **Configuration:** python-dotenv
 
 ---
 
@@ -40,10 +52,10 @@ app/
   models/         # ORM models
   routers/        # API endpoints
   schemas/        # Pydantic schemas
-  seed/           # database seeding from JSON (standalone script)
   services/       # data export service
   utils/          # helper functions (formatters)
 
+scripts/          # database seeding from JSON (standalone script)
 exports/          # generated files (CSV, etc.)
 tests/            # automated tests (pytest)
 
@@ -93,9 +105,68 @@ uvicorn app.main:app --reload
 
 ---
 
+## Testing
+
+The project uses pytest to ensure correctness of API behavior, data processing, and export functionality.
+
+### Test scope
+
+- geological time calculations and data consistency
+- REST API endpoints (units, exports)
+- CSV export validation
+- general application behavior
+
+### Run tests
+
+```bash
+pytest
+```
+### Test structure
+```
+tests/
+  conftest.py         # shared fixtures (DB, client, env)
+  settings.py         # shared test configuration
+  export/             # CSV/JSON export validation
+  units/              # API tests for geological time units
+  utils/              # helpers and custom assertions
+```
+
+### Notes
+- Test environment variables are overridden using pytest fixtures
+- Each test runs with a clean database state
+
+---
+
+## CI / GitHub Actions
+
+The test suite is automatically executed on every push and pull request to ensure code quality and stability.
+
+---
+
 ## Database
 The project uses a local SQLite database (`app/database/data/geologic-time-scale-app.db`) 
 containing data based on the International Chronostratigraphic Chart (v2024-12).
+
+---
+
+## Database rebuild script
+
+This project includes a utility script for rebuilding and seeding the database from scratch.
+
+It is intended for local development and testing purposes only.
+
+### Functionality
+
+- drops and recreates the database schema
+- seeds initial data from JSON files
+
+### Usage
+
+```bash
+python -m scripts.rebuilt_database --db-url sqlite:///./scripts/test.db 
+````
+**Warning**
+This script will overwrite existing data.
 
 ---
 ## API Documentation
@@ -212,35 +283,14 @@ Exported files are generated and stored in the `/exports` directory.
 
 ---
 
-## Database Seeding
-
-The database is populated with chronostratigraphic data stored in JSON files located in the `app/seed/input` directory.
-
----
-
-This project was built to demonstrate and practice backend development skills using FastAPI, with a focus on real-world architecture and data handling.
-
-Key objectives:
-
-* Designing and building RESTful APIs with FastAPI
-* Applying clean, layered architecture principles
-* Modeling hierarchical data structures
-* Implementing database seeding from structured data sources
-* Organizing modular API structure using routers
-* Exporting structured data in a usable format
-* Writing automated tests for API reliability
-* Working with realistic, domain-driven datasets
-
----
-
 ## Roadmap / TODO
 
-* [x] Add full CRUD endpoints for chronostratigraphic units
-* [x] Extend input JSON dataset with additional chronostratigraphic units
-* [x] Implement automated tests (unit and integration)
-* [ ] Add working script that will be used to initialize the database with predefined data
-* [ ] Add Docker support for containerized deployment
-* [ ] Introduce `pyproject.toml` for project configuration and dependency management
+- [x] Add full CRUD endpoints for chronostratigraphic units
+- [x] Extend input JSON dataset with additional chronostratigraphic units
+- [x] Implement automated tests (unit and integration)
+- [x] Add working script that will be used to initialize the database with predefined data
+- [ ] Add Docker support for containerized deployment
+- [ ] Introduce `pyproject.toml` for project configuration and dependency management
 
 ---
 

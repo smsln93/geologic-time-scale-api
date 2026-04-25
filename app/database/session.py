@@ -1,10 +1,12 @@
+from typing import Optional
+
 from sqlalchemy.orm import sessionmaker
 
 from app.database.engine import get_database_engine
 
 
-def create_session_local():
-    engine = get_database_engine()
+def create_session_local(db_url: Optional[str] = None):
+    engine = get_database_engine(db_url)
 
     return sessionmaker(
         autocommit=False,
