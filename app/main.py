@@ -1,6 +1,4 @@
 from fastapi import FastAPI
-from dotenv import load_dotenv
-load_dotenv()
 
 from app.routers.router import api_router
 

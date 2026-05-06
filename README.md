@@ -13,13 +13,14 @@ The project includes a SQLite database and data export functionality.
 - optional database seeding via JSON-based script
 - SQLite database for local development
 - automated pytest-based test suite
+- dockerized setup with Docker Compose (API + testing environment)
 - CI integration via GitHub Actions
 
 ---
 
 ## Objectives
 
-This project implements a backend system for managing and serving geologic time scale data using FastAPI and SQLAlchemy.
+This project implements a backend system for managing and serving geologic timescale data using FastAPI and SQLAlchemy.
 
 Key objectives:
 
@@ -61,31 +62,24 @@ tests/            # automated tests (pytest)
 
 run.py            # application entrypoint used to start API locally
 pytest.ini        # pytest configuration
-.env              # environment variables (not committed)
+.env              # local environment variables (not committed)
 .env.example      # template for required configuration
 requirements.txt  # project dependencies
+Dockerfile        # container image definition
+.dockerignore     # ignored files for Docker build
+compose.yaml      # docker compose setup
 ```
 
 ---
 
 ## Setup
 
-### 1. Clone repository
+### Clone repository
 ```bash
 git clone https://github.com/smsln93/geologic-time-scale-api.git
-```
-### 2. Create virtual environment
-```bash
 cd geologic-time-scale-api
-
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
 ```
-### 3. Install dependencies
-```bash
-pip install -r requirements.txt
-```
-### 4. Configure environment
+### Configure environment
 Create `.env` file:
 
 ```dotenv
@@ -93,8 +87,38 @@ API_KEY=your-key
 API_BASE_URL=http://127.0.0.1:8000/geologic-time-scale-api/v1
 DATABASE_URL=sqlite:///./app/database/data/geologic-time-scale-app.db
 ```
-### 5. Run application
-You can start the API using the provided entrypoint:
+You can also use example file:
+```bash
+cp .env.example .env
+```
+---
+
+## Run application
+
+### Build and start API with Docker
+```bash
+docker compose up --build
+```
+API will be available at:
+```
+http://127.0.0.1:8000/geologic-time-scale-api/v1/
+```
+Run tests (Docker):
+```bash
+docker compose run --rm api pytest
+```
+
+### Local development (without Docker)
+Create virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+```
+Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+Run application:
 ```bash
 python run.py
 ```
@@ -289,7 +313,7 @@ Exported files are generated and stored in the `/exports` directory.
 - [x] Extend input JSON dataset with additional chronostratigraphic units
 - [x] Implement automated tests (unit and integration)
 - [x] Add working script that will be used to initialize the database with predefined data
-- [ ] Add Docker support for containerized deployment
+- [x] Add Docker support for containerized deployment
 - [ ] Introduce `pyproject.toml` for project configuration and dependency management
 
 ---

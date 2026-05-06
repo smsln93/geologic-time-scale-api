@@ -1,9 +1,11 @@
 __pycache__/
 *.pyc
 venv/
+.venv/
 .env
 *.db
-!app/database/data/geologic-time-scale-app.db
 .vscode/
 /exports
 .idea
+.git
+.gitignore
