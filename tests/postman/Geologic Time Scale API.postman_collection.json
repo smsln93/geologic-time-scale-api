@@ -1,0 +1,2394 @@
+{
+  "info": {
+    "_postman_id": "d896bdea-355a-4095-84a9-7b09af219019",
+    "name": "Geologic Time Scale API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48936453",
+    "_collection_link": "https://go.postman.co/collection/48936453-d896bdea-355a-4095-84a9-7b09af219019?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "CRUD Tests",
+      "item": [
+        {
+          "name": "POST - Create test unit",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Unit created successfully\", function () {\r\n    pm.response.to.have.status(201);\r\n\r\n    const unit = pm.response.json();\r\n    pm.expect(unit.id).to.eql(\"postman-test-epoch\");\r\n    pm.expect(unit.rank_order).to.eql(5);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{api_key}}",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "string"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"postman-test-epoch\",\n  \"name\": \"Postman Test Epoch\",\n  \"rank\": \"Epoch\",\n  \"begin_time_ma\": 100.5,\n  \"begin_uncertainty_ma\": 0.1,\n  \"end_time_ma\": 66.0,\n  \"end_uncertainty_ma\": 0.0,\n  \"parent_id\": \"cretaceous\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/units/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                ""
+              ]
+            },
+            "description": "Returns newly created unit"
+          },
+          "response": [
+            {
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-api-key",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"rank\": \"Epoch\",\n  \"parent_id\": null,\n  \"begin_time_ma\": 8262.923275005256,\n  \"end_time_ma\": 1617.0819464015906,\n  \"id\": \"string\",\n  \"begin_uncertainty_ma\": 0,\n  \"end_uncertainty_ma\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ""
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"name\": \"string\",\n  \"rank\": \"Eon\",\n  \"parent_id\": \"string\",\n  \"begin_time_ma\": 9675.208475426294,\n  \"end_time_ma\": 9224.788875863955,\n  \"id\": \"string\",\n  \"rank_order\": 5129,\n  \"begin_uncertainty_ma\": 0,\n  \"end_uncertainty_ma\": 0\n}"
+            },
+            {
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-api-key",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"rank\": \"Epoch\",\n  \"parent_id\": null,\n  \"begin_time_ma\": 8262.923275005256,\n  \"end_time_ma\": 1617.0819464015906,\n  \"id\": \"string\",\n  \"begin_uncertainty_ma\": 0,\n  \"end_uncertainty_ma\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ""
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        2299,\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET - Verify creation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GET returns 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Created unit has expected values\", function () {\r\n    pm.expect(pm.response.json().id).to.eql(\"postman-test-epoch\");\r\n    pm.expect(pm.response.json().name).to.eql(\"Postman Test Epoch\");\r\n    pm.expect(pm.response.json().rank).to.eql(\"Epoch\");\r\n    pm.expect(pm.response.json().parent_id).to.eql(\"cretaceous\");\r\n    pm.expect(pm.response.json().begin_time_ma).to.eql(100.5);\r\n    pm.expect(pm.response.json().begin_uncertainty_ma).to.eql(0.1);\r\n    pm.expect(pm.response.json().end_time_ma).to.eql(66.0);\r\n    pm.expect(pm.response.json().end_uncertainty_ma).to.eql(0.0);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/units/postman-test-epoch",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                "postman-test-epoch"
+              ]
+            },
+            "description": "Returns detailed information about a geologic unit"
+          },
+          "response": [
+            {
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"name\": \"string\",\n  \"rank\": \"Eon\",\n  \"parent_id\": \"string\",\n  \"begin_time_ma\": 9675.208475426294,\n  \"end_time_ma\": 9224.788875863955,\n  \"id\": \"string\",\n  \"rank_order\": 5129,\n  \"begin_uncertainty_ma\": 0,\n  \"end_uncertainty_ma\": 0\n}"
+            },
+            {
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        2299,\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "PATCH - Update test unit name",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"PATCH updates unit name\", function () {\r\n    pm.response.to.have.status(200);\r\n\r\n    const unit = pm.response.json();\r\n\r\n    pm.expect(unit.id).to.eql(\"postman-test-epoch\");\r\n    pm.expect(unit.name).to.eql(\"PATCHED Postman Test Epoch\");\r\n    pm.expect(unit.rank).to.eql(\"Epoch\");\r\n    pm.expect(unit.rank_order).to.eql(5);\r\n    pm.expect(unit.parent_id).to.eql(\"cretaceous\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{api_key}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "string"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"PATCHED Postman Test Epoch\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/units/postman-test-epoch",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                "postman-test-epoch"
+              ]
+            },
+            "description": "Returns updated unit"
+          },
+          "response": [
+            {
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "x-api-key",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": null,\n  \"rank\": \"Age\",\n  \"parent_id\": null,\n  \"begin_time_ma\": null,\n  \"begin_uncertainty_ma\": 8664.571663463921,\n  \"end_time_ma\": null,\n  \"end_uncertainty_ma\": 5176.628655638025\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"name\": \"string\",\n  \"rank\": \"Eon\",\n  \"parent_id\": \"string\",\n  \"begin_time_ma\": 9675.208475426294,\n  \"end_time_ma\": 9224.788875863955,\n  \"id\": \"string\",\n  \"rank_order\": 5129,\n  \"begin_uncertainty_ma\": 0,\n  \"end_uncertainty_ma\": 0\n}"
+            },
+            {
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "x-api-key",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": null,\n  \"rank\": \"Age\",\n  \"parent_id\": null,\n  \"begin_time_ma\": null,\n  \"begin_uncertainty_ma\": 8664.571663463921,\n  \"end_time_ma\": null,\n  \"end_uncertainty_ma\": 5176.628655638025\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        2299,\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET - Verify PATCH",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GET returns 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Created unit has expected values\", function () {\r\n    pm.expect(pm.response.json().id).to.eql(\"postman-test-epoch\");\r\n    pm.expect(pm.response.json().name).to.eql(\"PATCHED Postman Test Epoch\");\r\n    pm.expect(pm.response.json().rank).to.eql(\"Epoch\");\r\n    pm.expect(pm.response.json().parent_id).to.eql(\"cretaceous\");\r\n    pm.expect(pm.response.json().begin_time_ma).to.eql(100.5);\r\n    pm.expect(pm.response.json().begin_uncertainty_ma).to.eql(0.1);\r\n    pm.expect(pm.response.json().end_time_ma).to.eql(66.0);\r\n    pm.expect(pm.response.json().end_uncertainty_ma).to.eql(0.0);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/units/postman-test-epoch",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                "postman-test-epoch"
+              ]
+            },
+            "description": "Returns detailed information about a geologic unit"
+          },
+          "response": [
+            {
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"name\": \"string\",\n  \"rank\": \"Eon\",\n  \"parent_id\": \"string\",\n  \"begin_time_ma\": 9675.208475426294,\n  \"end_time_ma\": 9224.788875863955,\n  \"id\": \"string\",\n  \"rank_order\": 5129,\n  \"begin_uncertainty_ma\": 0,\n  \"end_uncertainty_ma\": 0\n}"
+            },
+            {
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        2299,\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "PUT - Replace test unit",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"PUT replaces unit data\", function () {\r\n    pm.response.to.have.status(200);\r\n\r\n    const unit = pm.response.json();\r\n\r\n    pm.expect(unit.id).to.eql(\"postman-test-epoch\");\r\n    pm.expect(unit.name).to.eql(\"PUT Postman Test Period\");\r\n    pm.expect(unit.rank).to.eql(\"Period\");\r\n    pm.expect(unit.rank_order).to.eql(4);\r\n    pm.expect(unit.begin_time_ma).to.eql(112.4);\r\n    pm.expect(unit.begin_uncertainty_ma).to.eql(2.6);\r\n    pm.expect(unit.end_time_ma).to.eql(78.724);\r\n    pm.expect(unit.end_uncertainty_ma).to.eql(0.6);\r\n    pm.expect(unit.parent_id).to.eql(\"mesozoic\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{api_key}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "string"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"PUT Postman Test Period\",\n  \"rank\": \"Period\",\n  \"begin_time_ma\": 112.4,\n  \"begin_uncertainty_ma\": 2.6,\n  \"end_time_ma\": 78.724,\n  \"end_uncertainty_ma\": 0.6,\n  \"parent_id\": \"mesozoic\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/units/postman-test-epoch",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                "postman-test-epoch"
+              ]
+            },
+            "description": "Returns replaced unit"
+          },
+          "response": [
+            {
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "x-api-key",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"rank\": \"Eon\",\n  \"parent_id\": \"string\",\n  \"begin_time_ma\": 1558.6577391973467,\n  \"begin_uncertainty_ma\": 3631.816814335802,\n  \"end_time_ma\": 1530.5681191345454,\n  \"end_uncertainty_ma\": 1155.438923383867\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"name\": \"string\",\n  \"rank\": \"Eon\",\n  \"parent_id\": \"string\",\n  \"begin_time_ma\": 9675.208475426294,\n  \"end_time_ma\": 9224.788875863955,\n  \"id\": \"string\",\n  \"rank_order\": 5129,\n  \"begin_uncertainty_ma\": 0,\n  \"end_uncertainty_ma\": 0\n}"
+            },
+            {
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "x-api-key",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"rank\": \"Eon\",\n  \"parent_id\": \"string\",\n  \"begin_time_ma\": 1558.6577391973467,\n  \"begin_uncertainty_ma\": 3631.816814335802,\n  \"end_time_ma\": 1530.5681191345454,\n  \"end_uncertainty_ma\": 1155.438923383867\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        2299,\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET - Verify PUT",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\nconst unit = pm.response.json();\r\n\r\npm.test(\"GET returns 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Created unit has expected values\", function () {\r\n    pm.expect(unit.id).to.eql(\"postman-test-epoch\");\r\n    pm.expect(unit.name).to.eql(\"PUT Postman Test Period\");\r\n    pm.expect(unit.rank).to.eql(\"Period\");\r\n    pm.expect(unit.rank_order).to.eql(4);\r\n    pm.expect(unit.begin_time_ma).to.eql(112.4);\r\n    pm.expect(unit.begin_uncertainty_ma).to.eql(2.6);\r\n    pm.expect(unit.end_time_ma).to.eql(78.724);\r\n    pm.expect(unit.end_uncertainty_ma).to.eql(0.6);\r\n    pm.expect(unit.parent_id).to.eql(\"mesozoic\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/units/postman-test-epoch",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                "postman-test-epoch"
+              ]
+            },
+            "description": "Returns detailed information about a geologic unit"
+          },
+          "response": [
+            {
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"name\": \"string\",\n  \"rank\": \"Eon\",\n  \"parent_id\": \"string\",\n  \"begin_time_ma\": 9675.208475426294,\n  \"end_time_ma\": 9224.788875863955,\n  \"id\": \"string\",\n  \"rank_order\": 5129,\n  \"begin_uncertainty_ma\": 0,\n  \"end_uncertainty_ma\": 0\n}"
+            },
+            {
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        2299,\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "DELETE - Delete test unit",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GET returns 204\", function () {\r\n    pm.response.to.have.status(204);\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{api_key}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "string"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/units/postman-test-epoch",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                "postman-test-epoch"
+              ]
+            },
+            "description": "Deletes unit"
+          },
+          "response": [
+            {
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "x-api-key",
+                    "value": "string"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            },
+            {
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "x-api-key",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        2299,\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET - Verify deletion",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GET returns 404\", function () {\r\n    pm.response.to.have.status(404);\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/units/postman-test-epoch",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                "postman-test-epoch"
+              ]
+            },
+            "description": "Returns detailed information about a geologic unit"
+          },
+          "response": [
+            {
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"name\": \"string\",\n  \"rank\": \"Eon\",\n  \"parent_id\": \"string\",\n  \"begin_time_ma\": 9675.208475426294,\n  \"end_time_ma\": 9224.788875863955,\n  \"id\": \"string\",\n  \"rank_order\": 5129,\n  \"begin_uncertainty_ma\": 0,\n  \"end_uncertainty_ma\": 0\n}"
+            },
+            {
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        2299,\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    }\n  ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CRUD Negative Tests",
+      "item": [
+        {
+          "name": "POST - Duplicate Triassic",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"POST duplicate Triassic returns 409\", function () {\r\n    pm.response.to.have.status(409)\r\n});\r\n\r\npm.test(\"POST duplicate Triassic returns correct error message\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.detail).to.eql(\"Unit already exists\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{api_key}}",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": \"triassic\",\r\n    \"name\": \"Triassic\",\r\n    \"rank\": \"Period\",\r\n    \"begin_time_ma\": 251.902,\r\n    \"begin_uncertainty_ma\": 0.024,\r\n    \"end_time_ma\": 201.4,\r\n    \"end_uncertainty_ma\": 0.2,\r\n    \"parent_id\": \"mesozoic\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/units/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST - Create unit with nonexistent parent",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"POST unit with nonexisted parent returns 422\", function () {\r\n    pm.response.to.have.status(422); \r\n});\r\n\r\npm.test(\"Correct error message\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.detail).to.eql(\"Parent unit does not exist\");\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{api_key}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": \"postman-test-epoch\",\r\n  \"name\": \"Postman Test Epoch\",\r\n  \"rank\": \"Epoch\",\r\n  \"begin_time_ma\": 100.5,\r\n  \"begin_uncertainty_ma\": 0.1,\r\n  \"end_time_ma\": 66.0,\r\n  \"end_uncertainty_ma\": 0.0,\r\n  \"parent_id\": \"nonexisted-parent\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/units/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH - Update Paleocene with invalid field",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"PATCH Paleocene with invalid field returns 422\", function () {\r\n    pm.response.to.have.status(422);\r\n    \r\n    const errors = pm.response.json().detail;\r\n\r\n    pm.expect(errors[0].type).to.eql(\"extra_forbidden\");\r\n    pm.expect(errors[0].loc).to.deep.equal([\"body\", \"invalid_field\"]);\r\n    pm.expect(errors[0].msg).to.eql(\"Extra inputs are not permitted\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{api_key}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"invalid_field\": \"abc\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/units/paleocene",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                "paleocene"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE - Delete Cretaceous which has children units",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"DELETE Cretaceous returns 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});\r\n\r\npm.test(\"DELETE Cretaceous returns correct error message\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.detail).to.eql(\"Cannot delete unit with child units\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{api_key}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/units/cretaceous",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                "cretaceous"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "READ",
+      "item": [
+        {
+          "name": "GET - All units",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GET all units should return 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"GET all units returns a non-empty list\", function () {\r\n    const units = pm.response.json();\r\n\r\n    pm.expect(units).to.be.an(\"array\")\r\n    pm.expect(units.length).to.be.greaterThan(0);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/units/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                ""
+              ]
+            },
+            "description": "Returns all geologic units, optionally filtered by rank, hierarchy, a specific point in time or time boundaries (before/after)."
+          },
+          "response": [
+            {
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/?rank=string&parent_id=string&at_time=2207.6114738052133&min_age_ma=2207.6114738052133&max_age_ma=2207.6114738052133",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "rank",
+                      "value": "string"
+                    },
+                    {
+                      "key": "parent_id",
+                      "value": "string"
+                    },
+                    {
+                      "key": "at_time",
+                      "value": "2207.6114738052133"
+                    },
+                    {
+                      "key": "min_age_ma",
+                      "value": "2207.6114738052133"
+                    },
+                    {
+                      "key": "max_age_ma",
+                      "value": "2207.6114738052133"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"rank\": \"Age\",\n    \"parent_id\": \"string\",\n    \"begin_time_ma\": 2881.4040571884548,\n    \"end_time_ma\": 820.3405245716544,\n    \"id\": \"string\",\n    \"rank_order\": 8033,\n    \"begin_uncertainty_ma\": 0,\n    \"end_uncertainty_ma\": 0\n  },\n  {\n    \"name\": \"string\",\n    \"rank\": \"Epoch\",\n    \"parent_id\": \"string\",\n    \"begin_time_ma\": 4246.399869535584,\n    \"end_time_ma\": 6077.172758528562,\n    \"id\": \"string\",\n    \"rank_order\": 1870,\n    \"begin_uncertainty_ma\": 0,\n    \"end_uncertainty_ma\": 0\n  }\n]"
+            },
+            {
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/?rank=string&parent_id=string&at_time=2207.6114738052133&min_age_ma=2207.6114738052133&max_age_ma=2207.6114738052133",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "rank",
+                      "value": "string"
+                    },
+                    {
+                      "key": "parent_id",
+                      "value": "string"
+                    },
+                    {
+                      "key": "at_time",
+                      "value": "2207.6114738052133"
+                    },
+                    {
+                      "key": "min_age_ma",
+                      "value": "2207.6114738052133"
+                    },
+                    {
+                      "key": "max_age_ma",
+                      "value": "2207.6114738052133"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        2299,\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET - Get Jurassic",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GET Jurassic returns 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst unit = pm.response.json();\r\n\r\npm.test(\"GET Jurassic returns correct data\", function () {\r\n    pm.expect(unit.name).to.eql(\"Jurassic\");\r\n    pm.expect(unit.id).to.eql(\"jurassic\");\r\n    pm.expect(unit.rank).to.eql(\"Period\");\r\n    pm.expect(unit.rank_order).to.eql(4);\r\n    pm.expect(unit.begin_time_ma).to.eql(201.4);\r\n    pm.expect(unit.begin_uncertainty_ma).to.eql(0.2);\r\n    pm.expect(unit.end_time_ma).to.eql(143.1);\r\n    pm.expect(unit.end_uncertainty_ma).to.eql(0.6);\r\n    pm.expect(unit.parent_id).to.eql(\"mesozoic\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/units/jurassic",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                "jurassic"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET - Jurassic description",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GET Jurassic description returns 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst unit = pm.response.json();\r\n\r\npm.test(\"Jurassic description has proper value\", function () {\r\n    pm.expect(unit.description).to.eql(\r\n        \"Jurassic - Period lasted from 201.4 ± 0.2 Ma to 143.1 ± 0.6 Ma\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/units/jurassic/description",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                "jurassic",
+                "description"
+              ]
+            },
+            "description": "Returns the description of the geologic unit"
+          },
+          "response": [
+            {
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id/description",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id",
+                    "description"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"description\": \"string\"\n}"
+            },
+            {
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id/description",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id",
+                    "description"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        2299,\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET - Callovian parent unit",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GET Callovian's parent unit should return 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst unit = pm.response.json();\r\n\r\npm.test(\"GET Callovian's parent unit returns Middle Jurassic\", function () {\r\n    pm.expect(unit.name).to.eql(\"Middle Jurassic\");\r\n    pm.expect(unit.id).to.eql(\"middle-jurassic\");\r\n    pm.expect(unit.rank).to.eql(\"Epoch\");\r\n    pm.expect(unit.rank_order).to.eql(5);\r\n    pm.expect(unit.begin_time_ma).to.eql(174.7);\r\n    pm.expect(unit.begin_uncertainty_ma).to.eql(0.8);\r\n    pm.expect(unit.end_time_ma).to.eql(161.5);\r\n    pm.expect(unit.end_uncertainty_ma).to.eql(1.0);\r\n    pm.expect(unit.parent_id).to.eql(\"jurassic\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/units/callovian/parent_unit",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                "callovian",
+                "parent_unit"
+              ]
+            },
+            "description": "Returns the immediate higher-level geologic unit (e.g. Period → Era)"
+          },
+          "response": [
+            {
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id/parent_unit",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id",
+                    "parent_unit"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"name\": \"string\",\n  \"rank\": \"Eon\",\n  \"parent_id\": \"string\",\n  \"begin_time_ma\": 9675.208475426294,\n  \"end_time_ma\": 9224.788875863955,\n  \"id\": \"string\",\n  \"rank_order\": 5129,\n  \"begin_uncertainty_ma\": 0,\n  \"end_uncertainty_ma\": 0\n}"
+            },
+            {
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id/parent_unit",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id",
+                    "parent_unit"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        2299,\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET - Oligocene child units",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const units = pm.response.json();\r\n\r\npm.test(\"GET Oligocene child units returns two child units\", function () {\r\n    pm.response.to.have.status(200);\r\n    pm.expect(units).to.have.lengthOf(2);\r\n});\r\n\r\nconst rupelian = units.find(unit => unit.id === \"rupelian\");\r\nconst chattian = units.find(unit => unit.id === \"chattian\");\r\n\r\npm.test(\"Rupelian has correct values\", function () {\r\n    pm.expect(rupelian).to.exist;\r\n    pm.expect(rupelian.id).to.equal(\"rupelian\");\r\n    pm.expect(rupelian.name).to.eql(\"Rupelian\");\r\n    pm.expect(rupelian.rank).to.eql(\"Age\");\r\n    pm.expect(rupelian.rank_order).to.equal(6);\r\n    pm.expect(rupelian.begin_time_ma).to.equal(33.9);\r\n    pm.expect(rupelian.begin_uncertainty_ma).to.equal(0.0);\r\n    pm.expect(rupelian.end_time_ma).to.equal(27.3);\r\n    pm.expect(rupelian.end_uncertainty_ma).to.equal(0.0);\r\n    pm.expect(rupelian.parent_id).to.eql(\"oligocene\");\r\n});\r\n\r\npm.test(\"Chattian has correct values\", function () {\r\n    pm.expect(chattian).to.exist;\r\n    pm.expect(chattian.id).to.equal(\"chattian\");\r\n    pm.expect(chattian.name).to.eql(\"Chattian\");    \r\n    pm.expect(chattian.rank).to.eql(\"Age\"); \r\n    pm.expect(chattian.rank_order).to.equal(6); \r\n    pm.expect(chattian.begin_time_ma).to.equal(27.3);\r\n    pm.expect(chattian.begin_uncertainty_ma).to.equal(0.0);\r\n    pm.expect(chattian.end_time_ma).to.equal(23.04);\r\n    pm.expect(chattian.end_uncertainty_ma).to.equal(0.0);\r\n    pm.expect(chattian.parent_id).to.eql(\"oligocene\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/units/oligocene/child_units",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                "oligocene",
+                "child_units"
+              ]
+            },
+            "description": "Returns all lower-level geologic subdivisions (e.g. Era → Periods)"
+          },
+          "response": [
+            {
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id/child_units",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id",
+                    "child_units"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"rank\": \"Period\",\n    \"parent_id\": \"string\",\n    \"begin_time_ma\": 82.98340139250459,\n    \"end_time_ma\": 9879.092159807738,\n    \"id\": \"string\",\n    \"rank_order\": 5068,\n    \"begin_uncertainty_ma\": 0,\n    \"end_uncertainty_ma\": 0\n  },\n  {\n    \"name\": \"string\",\n    \"rank\": \"Era\",\n    \"parent_id\": \"string\",\n    \"begin_time_ma\": 4006.557120017893,\n    \"end_time_ma\": 1038.7638026119705,\n    \"id\": \"string\",\n    \"rank_order\": 625,\n    \"begin_uncertainty_ma\": 0,\n    \"end_uncertainty_ma\": 0\n  }\n]"
+            },
+            {
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id/child_units",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id",
+                    "child_units"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        2299,\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET - Pleistocene path",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GET Pleistocene path should return 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst unit = pm.response.json()\r\n\r\npm.test(\"GET Pleistocene path returns correct list of units\", function () {\r\n    pm.expect(unit.path).to.eql([\"Phanerozoic\", \"Cenozoic\", \"Quaternary\", \"Pleistocene\"]);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/units/pleistocene/path",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                "pleistocene",
+                "path"
+              ]
+            },
+            "description": "Returns full hierarchical path from the root (e.g. Eon → Era → Period → Epoch)"
+          },
+          "response": [
+            {
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id/path",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id",
+                    "path"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"path\": [\n    \"string\",\n    \"string\"\n  ]\n}"
+            },
+            {
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id/path",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id",
+                    "path"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        2299,\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET - Carnian duration",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"GET Carnian duration should return 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst duration = pm.response.json()\r\n\r\npm.test(\"GET Carnian formatted duration returns proper value in Ma\", function () {\r\n    pm.expect(duration.formatted_duration).to.eql(\"9.700 Ma\");  \r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/units/carnian/duration",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "units",
+                "carnian",
+                "duration"
+              ]
+            },
+            "description": "Returns the time span of the unit"
+          },
+          "response": [
+            {
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id/duration",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id",
+                    "duration"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"duration_ma\": 4944.192520812625,\n  \"formatted_duration\": \"string\"\n}"
+            },
+            {
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/units/:unit_id/duration",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "units",
+                    ":unit_id",
+                    "duration"
+                  ],
+                  "variable": [
+                    {
+                      "key": "unit_id",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        2299,\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": \"\",\n      \"ctx\": {}\n    }\n  ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "EXPORT",
+      "item": [
+        {
+          "name": "EXPORT - Exported CSV contains Miocene",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Export CSV returns 200\", function () {\r\n    pm.response.to.have.status(200);\r\n    pm.expect(pm.response.headers.get(\"Content-Type\"))\r\n        .to.include(\"text/csv\");\r\n});\r\n\r\npm.test(\"Export CSV contains data\", function () {\r\n    const csv = pm.response.text();\r\n\r\n    pm.expect(csv.trim()).to.not.be.empty;\r\n    pm.expect(csv).to.include(\"miocene\");\r\n});\r\n\r\npm.test(\"Export CSV contains expected headers\", function () {\r\n    const csv = pm.response.text();\r\n    const headers = csv.split(/\\r?\\n/)[0].split(\",\");\r\n\r\n    pm.expect(headers).to.include.members([\r\n        \"id\",\r\n        \"name\",\r\n        \"rank\",\r\n        \"parent_id\"\r\n    ]);\r\n});\r\n\r\npm.test(\"Export CSV contains Miocene\", function () {\r\nconst csv = pm.response.text();\r\n    const lines = csv.trim().split(/\\r?\\n/);\r\n\r\n    const headers = lines[0].split(\",\");\r\n    const idIndex = headers.indexOf(\"id\");\r\n\r\n    const row = lines.slice(1)\r\n        .map(line => line.split(\",\"))\r\n        .find(values => values[idIndex] === \"miocene\");\r\n\r\n    pm.expect(row).to.exist;\r\n    pm.expect(row[headers.indexOf(\"name\")]).to.eql(\"Miocene\");\r\n    pm.expect(row[headers.indexOf(\"rank\")]).to.eql(\"Epoch\");\r\n    pm.expect(row[headers.indexOf(\"parent_id\")]).to.eql(\"neogene\");\r\n    pm.expect(Number(row[headers.indexOf(\"begin_time_ma\")])).to.eql(23.04);\r\n    pm.expect(Number(row[headers.indexOf(\"begin_uncertainty_ma\")])).to.eql(0.0);\r\n    pm.expect(Number(row[headers.indexOf(\"end_time_ma\")])).to.eql(5.333);\r\n    pm.expect(Number(row[headers.indexOf(\"end_uncertainty_ma\")])).to.eql(0.0);\r\n    pm.expect(Number(row[headers.indexOf(\"rank_order\")])).to.eql(5);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/export/csv",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "export",
+                "csv"
+              ]
+            },
+            "description": "Exports all geologic units as a downloadable CSV file"
+          },
+          "response": [
+            {
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/export/csv",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "export",
+                    "csv"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "EXPORT - Exported JSON contains Mesozoic",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Export JSON returns 200\", function () {\r\n    pm.response.to.have.status(200);\r\n    pm.expect(pm.response.headers.get(\"Content-Type\"))\r\n        .to.include(\"application/json\");\r\n});\r\n\r\npm.test(\"Export JSON contains units\", function () {\r\n    const units = pm.response.json();\r\n\r\n    pm.expect(units).to.be.an(\"array\");\r\n    pm.expect(units.length).to.be.greaterThan(0);\r\n});\r\n\r\npm.test(\"Export JSON contains Mesozoic\", function () {\r\n    const units = pm.response.json();\r\n\r\n    const mesozoic = units.find(\r\n        unit => unit.id === \"mesozoic\"\r\n    );\r\n\r\n    pm.expect(mesozoic).to.exist;\r\n    pm.expect(mesozoic.name).to.eql(\"Mesozoic\");\r\n    pm.expect(mesozoic.rank).to.eql(\"Era\");\r\n    pm.expect(mesozoic.parent_id).to.eql(\"phanerozoic\");\r\n    pm.expect(mesozoic.begin_time_ma).to.eql(251.902);\r\n    pm.expect(mesozoic.begin_uncertainty_ma).to.eql(0.024);\r\n    pm.expect(mesozoic.end_time_ma).to.eql(66.0);\r\n    pm.expect(mesozoic.end_uncertainty_ma).to.eql(0.0);\r\n    pm.expect(mesozoic.rank_order).to.eql(3);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/export/json",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "export",
+                "json"
+              ]
+            },
+            "description": "Exports all geologic units as a downloadable JSON file"
+          },
+          "response": [
+            {
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/geologic-time-scale-api/v1/export/json",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "geologic-time-scale-api",
+                    "v1",
+                    "export",
+                    "json"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET – API Root",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Root returns 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst data = pm.response.json();\r\n\r\npm.test(\"Root returns correct API name\", function () {\r\n    pm.expect(data.name).to.eql(\"Geologic Time Scale API\");\r\n});\r\n\r\npm.test(\"Root returns correct /docs address\", function () {\r\n    pm.expect(data.docs).to.eql(\"/geologic-time-scale-api/v1/docs\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            ""
+          ]
+        },
+        "description": "Returns basic information about the Geologic Time Scale API"
+      },
+      "response": [
+        {
+          "name": "Successful Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/geologic-time-scale-api/v1/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "geologic-time-scale-api",
+                "v1",
+                ""
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"key_0\": true,\n  \"key_1\": true\n}"
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000/geologic-time-scale-api/v1"
+    }
+  ]
+}

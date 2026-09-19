@@ -4,6 +4,7 @@ venv/
 .env
 *.db
 !app/database/data/geologic-time-scale-app.db
+!tests/postman/test_database/test.db
 .vscode/
 /exports
 .idea

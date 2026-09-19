@@ -153,11 +153,35 @@ tests/
   export/             # CSV/JSON export validation
   units/              # API tests for geological time units
   utils/              # helpers and custom assertions
+  postman/            # postman collection and test database
 ```
 
 ### Notes
 - Test environment variables are overridden using pytest fixtures
 - Each test runs with a clean database state
+
+### Postman API Tests
+
+The project includes a Postman collection located in `tests/postman/`.
+
+The collection covers:
+- CRUD operations (POST, GET, PATCH, PUT, DELETE).
+- Negative scenarios and error handling.
+- READ endpoints and filtering.
+- CSV and JSON exports.
+
+#### Running the collection
+
+1. Start the API using a separate test database.
+2. Import the collection from `tests/postman/` into Postman.
+3. Configure `base_url` and `api_key`.
+4. Run the collection using Postman Collection Runner.
+
+The CRUD tests must run in the correct order because they create, modify, and delete a test unit.
+
+**Warning**
+Run the Postman collection against the dedicated test database located at tests/postman/test_database/. 
+Do not use the production database.
 
 ---
 
