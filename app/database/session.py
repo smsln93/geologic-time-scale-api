@@ -1,11 +1,14 @@
-from typing import Optional
+from functools import lru_cache
 
+from fastapi import Depends
 from sqlalchemy.orm import sessionmaker
 
+from app.core.dependency import get_database_url
 from app.database.engine import get_database_engine
 
 
-def create_session_local(db_url: Optional[str] = None):
+@lru_cache(maxsize=None)
+def create_session_local(db_url: str | None):
     engine = get_database_engine(db_url)
 
     return sessionmaker(
@@ -15,8 +18,8 @@ def create_session_local(db_url: Optional[str] = None):
     )
 
 
-def get_db():
-    SessionLocal = create_session_local()
+def get_db(db_url: str = Depends(get_database_url)):
+    SessionLocal = create_session_local(db_url)
 
     db = SessionLocal()
     try:

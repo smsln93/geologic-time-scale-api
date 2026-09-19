@@ -1,7 +1,6 @@
 import argparse
 import json
 from pathlib import Path
-from typing import Optional
 
 from app.database.base import Base
 from app.database.session import create_session_local
@@ -12,12 +11,22 @@ from app.models.chronostratigraphic_unit_model import ChronostratigraphicUnitDB
 INPUT_DATA = Path(__file__).resolve().parent.joinpath("input")
 
 
-def load_units():
-    units = []
+def load_units(units_dir: Path = INPUT_DATA, selected_units_names: list[str] = None):
+    units: list[ChronostratigraphicUnitDB] = []
 
-    for file in INPUT_DATA.glob("*.json"):
-        with file.open(mode="r", encoding="utf-8") as f:
-            data_json = json.load(f)
+    if selected_units_names is None:
+        selected_units_paths = list(units_dir.glob("*.json"))
+    else:
+        selected_units_paths = [units_dir.joinpath(f"{name}.json") for name in selected_units_names]
+
+    for file in selected_units_paths:
+        try:
+            with file.open(mode="r", encoding="utf-8") as f:
+                data_json = json.load(f)
+        except FileNotFoundError as fnf:
+            raise FileNotFoundError(f"Missing unit file: {file}") from fnf
+        except json.JSONDecodeError as jsn:
+            raise ValueError(f"Invalid JSON file: {file}") from jsn
 
         units.extend(ChronostratigraphicUnitDB(**item)
                      for item in data_json)
@@ -25,7 +34,7 @@ def load_units():
     return units
 
 
-def run_db_seed(db_url: Optional[str] = None):
+def run_db_seed(units: list[ChronostratigraphicUnitDB], db_url: str | None):
     engine = get_database_engine(db_url)
 
     Base.metadata.drop_all(bind=engine)
@@ -35,7 +44,23 @@ def run_db_seed(db_url: Optional[str] = None):
     session = SessionLocal()
 
     try:
-        session.add_all(load_units())
+        pending = {unit.id: unit for unit in units}
+        inserted = set()
+
+        while pending:
+            ready = [unit for unit in pending.values()
+                     if unit.parent_id is None or unit.parent_id in inserted]
+
+            if not ready:
+                raise ValueError("Cannot resolve unit hierarchy: cycle or missing parent")
+
+            session.add_all(ready)
+            session.flush()
+
+            for unit in ready:
+                inserted.add(unit.id)
+                del pending[unit.id]
+
         session.commit()
     finally:
         session.close()
@@ -43,11 +68,21 @@ def run_db_seed(db_url: Optional[str] = None):
 
 def main():
     parser = argparse.ArgumentParser(description="Create or reset database")
-    parser.add_argument("--db-url", type=str, required=False, help="Optional database URL override")
+    parser.add_argument("--db-path", type=Path, required=True, help="Path to SQLite database")
+    parser.add_argument("--data-dir", type=Path, default=INPUT_DATA, help="Path to the directory with unit data")
+    parser.add_argument("--units", nargs='+', required=False, help="Optional list of unit names to be included")
 
     args = parser.parse_args()
 
-    run_db_seed(args.db_url)
+    units = load_units(units_dir=args.data_dir,
+                       selected_units_names=args.units)
+
+    if not units:
+        parser.error("No units specified to build database")
+
+    db_path = f"sqlite:///{args.db_path.resolve().as_posix()}"
+
+    run_db_seed(units, db_path)
 
 
 if __name__ == "__main__":

@@ -73,7 +73,16 @@ def auth_client(client):
 
 
 @pytest.fixture
-def pleistocene_unit():
+def test_db_session():
+    db = TestingSessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+
+@pytest.fixture
+def pleistocene_unit(test_db_session):
 
     db = TestingSessionLocal()
 
@@ -95,7 +104,7 @@ def pleistocene_unit():
 
 
 @pytest.fixture
-def mesozoic_unit():
+def mesozoic_unit(test_db_session):
 
     db = TestingSessionLocal()
 
@@ -111,6 +120,17 @@ def mesozoic_unit():
         parent_id=None
     )
 
+    triassic = ChronostratigraphicUnitDB(
+        id="triassic",
+        name="Triassic",
+        rank="Period",
+        rank_order=4,
+        begin_time_ma=251.902,
+        begin_uncertainty_ma=0.024,
+        end_time_ma=201.4,
+        end_uncertainty_ma=0.2,
+        parent_id="mesozoic")
+
     jurassic = ChronostratigraphicUnitDB(
         id="jurassic",
         name="Jurassic",
@@ -122,6 +142,18 @@ def mesozoic_unit():
         end_uncertainty_ma=0.6,
         parent_id="mesozoic")
 
+    early_jurassic = ChronostratigraphicUnitDB(
+        id="early-jurassic",
+        name="Early Jurassic",
+        rank="Epoch",
+        rank_order=5,
+        begin_time_ma=201.4,
+        begin_uncertainty_ma=0.2,
+        end_time_ma=174.7,
+        end_uncertainty_ma=0.8,
+        parent_id="jurassic"
+    )
+
     middle_jurassic = ChronostratigraphicUnitDB(
         id="middle-jurassic",
         name="Middle Jurassic",
@@ -132,6 +164,42 @@ def mesozoic_unit():
         end_time_ma=161.5,
         end_uncertainty_ma=1.0,
         parent_id="jurassic"
+    )
+
+    aalenian = ChronostratigraphicUnitDB(
+        id="aalenian",
+        name="Aalenian",
+        rank="Age",
+        rank_order=6,
+        begin_time_ma=174.7,
+        begin_uncertainty_ma=0.8,
+        end_time_ma=170.9,
+        end_uncertainty_ma=0.8,
+        parent_id="middle-jurassic"
+    )
+
+    bajocian = ChronostratigraphicUnitDB(
+        id="bajocian",
+        name="Bajocian",
+        rank="Age",
+        rank_order=6,
+        begin_time_ma=170.9,
+        begin_uncertainty_ma=0.8,
+        end_time_ma=168.2,
+        end_uncertainty_ma=1.2,
+        parent_id="middle-jurassic"
+    )
+
+    bathonian = ChronostratigraphicUnitDB(
+        id="bathonian",
+        name="Bathonian",
+        rank="Age",
+        rank_order=6,
+        begin_time_ma=168.2,
+        begin_uncertainty_ma=1.2,
+        end_time_ma=165.3,
+        end_uncertainty_ma=1.1,
+        parent_id="middle-jurassic"
     )
 
     callovian = ChronostratigraphicUnitDB(
@@ -146,6 +214,40 @@ def mesozoic_unit():
         parent_id="middle-jurassic"
     )
 
-    db.add_all([mesozoic, jurassic, middle_jurassic, callovian])
+    late_jurassic = ChronostratigraphicUnitDB(
+        id="late-jurassic",
+        name="Late Jurassic",
+        rank="Epoch",
+        rank_order=5,
+        begin_time_ma=161.5,
+        begin_uncertainty_ma=1.0,
+        end_time_ma=143.1,
+        end_uncertainty_ma=0.6,
+        parent_id="jurassic"
+    )
+
+    cretaceous = ChronostratigraphicUnitDB(
+        id="cretaceous",
+        name="Cretaceous",
+        rank="Period",
+        rank_order=4,
+        begin_time_ma=143.1,
+        begin_uncertainty_ma=0.6,
+        end_time_ma=66.0,
+        end_uncertainty_ma=0.0,
+        parent_id="mesozoic"
+    )
+
+    db.add_all([mesozoic,
+                triassic,
+                jurassic,
+                early_jurassic,
+                middle_jurassic,
+                aalenian,
+                bajocian,
+                bathonian,
+                callovian,
+                late_jurassic,
+                cretaceous])
     db.commit()
     return mesozoic

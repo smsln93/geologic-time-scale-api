@@ -1,16 +1,17 @@
-from typing import Literal, Optional
+from typing import Literal
 
 from pydantic import BaseModel, model_validator, ConfigDict
 
 from app.utils.time_value_formatter import format_description_representation
 
 
-class ChronostratigraphicUnitCreate(BaseModel):
-    id: str
-    name: str
-    rank: Literal["Supereon", "Eon", "Era", "Period", "Epoch", "Age"]
+Rank = Literal["Supereon", "Eon", "Era", "Period", "Epoch", "Age"]
 
-    parent_id: Optional[str] = None
+
+class ChronostratigraphicUnitBase(BaseModel):
+    name: str
+    rank: Rank
+    parent_id: str | None
 
     begin_time_ma: float
     begin_uncertainty_ma: float = 0.0
@@ -27,59 +28,66 @@ class ChronostratigraphicUnitCreate(BaseModel):
             if value < 0:
                 raise ValueError(f"Parameter {time} cannot be a negative value {value}")
 
-        if self.parent_id is not None and self.id == self.parent_id:
-            raise ValueError(f"Unit cannot be its own parent")
+        if self.begin_time_ma < self.end_time_ma:
+            raise ValueError("Ending time cannot be greater than beginning time")
 
         if self.rank == "Supereon" and self.parent_id is not None:
             raise ValueError("Supereon cannot have a parent")
 
-        if self.begin_time_ma < self.end_time_ma:
-            raise ValueError("Ending time cannot be greater than beginning time")
+        return self
+
+
+class ChronostratigraphicUnitCreate(ChronostratigraphicUnitBase):
+    id: str
+
+    @model_validator(mode="after")
+    def validate_create(self):
+        if self.parent_id is not None and self.id == self.parent_id:
+            raise ValueError(f"Unit cannot be its own parent")
 
         return self
 
 
-class ChronostratigraphicUnitRead(BaseModel):
+class ChronostratigraphicUnitRead(ChronostratigraphicUnitBase):
     id: str
-    name: str
-    rank: Literal["Supereon", "Eon", "Era", "Period", "Epoch", "Age"]
     rank_order: int  # Supereon - 1, Eon - 2, Era - 3, Period - 4, Epoch - 5, Age - 6
-
-    parent_id: Optional[str] = None
-
-    begin_time_ma: float
-    begin_uncertainty_ma: float = 0.0
-    end_time_ma: float
-    end_uncertainty_ma: float = 0.0
 
     model_config = ConfigDict(from_attributes=True)
 
 
 class ChronostratigraphicUnitUpdate(BaseModel):
-    name: Optional[str] = None
-    rank: Optional[str] = None
+    name: str | None = None
+    rank: Rank | None = None
 
-    parent_id: Optional[str] = None
+    parent_id: str | None = None
 
-    begin_time_ma: Optional[float] = None
-    begin_uncertainty_ma: Optional[float] = None
-    end_time_ma: Optional[float] = None
-    end_uncertainty_ma: Optional[float] = None
+    begin_time_ma: float | None = None
+    begin_uncertainty_ma: float | None = None
+    end_time_ma: float | None = None
+    end_uncertainty_ma: float | None = None
 
     model_config = ConfigDict(extra="forbid")
 
+    @model_validator(mode="after")
+    def validate_update(self):
+        for time, value in {
+            "begin_time_ma": self.begin_time_ma,
+            "begin_uncertainty_ma": self.begin_uncertainty_ma,
+            "end_time_ma": self.end_time_ma,
+            "end_uncertainty_ma": self.end_uncertainty_ma}.items():
+            if value is not None and value < 0:
+                raise ValueError(f"Parameter {time} cannot be a negative value {value}")
 
-class ChronostratigraphicUnitReplace(BaseModel):
-    name: str
-    rank: str
+        for field_name in self.model_fields_set:
+            if field_name != "parent_id" and getattr(self, field_name) is None:
+                raise ValueError(f"Field {field_name} cannot be null")
 
-    parent_id: Optional[str] = None
+        return self
 
-    begin_time_ma: float
+
+class ChronostratigraphicUnitReplace(ChronostratigraphicUnitBase):
     begin_uncertainty_ma: float
-    end_time_ma: float
     end_uncertainty_ma: float
-
 
 
 class UnitDescription(BaseModel):

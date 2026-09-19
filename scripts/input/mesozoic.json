@@ -162,8 +162,8 @@
         "rank_order": 5,
         "begin_time_ma": 201.4,
         "begin_uncertainty_ma": 0.2,
-        "end_time_ma": 199.5,
-        "end_uncertainty_ma": 0.3,
+        "end_time_ma": 174.7,
+        "end_uncertainty_ma": 0.8,
         "parent_id": "jurassic"
       },
 

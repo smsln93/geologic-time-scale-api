@@ -1,10 +1,7 @@
-import sqlite3
-from sqlite3 import IntegrityError
-from sqlalchemy.exc import IntegrityError
-from typing import Optional, Dict, List
-
-from fastapi import Depends, HTTPException, APIRouter
+from fastapi import Depends, HTTPException, APIRouter, Query
+from pydantic import ValidationError
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import IntegrityError
 
 from app.core.security import verify_api_key
 from app.database.session import get_db
@@ -17,7 +14,7 @@ from app.schemas.chronostratigraphic_unit import (ChronostratigraphicUnitCreate,
                                                   ChronostratigraphicUnitService,
                                                   UnitDescription,
                                                   UnitDuration,
-                                                  UnitPath)
+                                                  UnitPath, ChronostratigraphicUnitBase)
 from app.utils.time_value_formatter import format_duration_representation
 from app.enums.rank import Rank
 
@@ -25,51 +22,90 @@ from app.enums.rank import Rank
 TAG_UNITS_READ = "Geologic Time Scale Units (READ)"
 TAG_UNITS_WRITE = "Geologic Time Scale Units (WRITE)"
 
+
 units_router = APIRouter(
     prefix="/units",
 )
 
 
+def validate_parent_relationship(db: Session, unit_id: str, parent_id: str | None) -> None:
+    if parent_id is None:
+        return
+
+    if parent_id == unit_id:
+        raise HTTPException(status_code=422, detail="Unit cannot be its own parent")
+
+    parent = db.get(ChronostratigraphicUnitDB, parent_id)
+    if parent is None:
+        raise HTTPException(status_code=422, detail="Parent unit does not exist")
+
+    current_parent = parent
+    seen = set()
+
+    while current_parent is not None:
+        if current_parent.id == unit_id:
+            raise HTTPException(status_code=422, detail="Circular parent relationship")
+
+        if current_parent.id in seen:
+            raise HTTPException(status_code=422, detail="Parent hierarchy contains a cycle")
+
+        seen.add(current_parent.id)
+
+        current_parent = (
+            db.get(ChronostratigraphicUnitDB, current_parent.parent_id)
+            if current_parent.parent_id is not None
+            else None
+        )
+
+
 @units_router.get(path="/",
                   tags=[TAG_UNITS_READ],
-                  response_model=List[ChronostratigraphicUnitRead],
+                  response_model=list[ChronostratigraphicUnitRead],
                   summary="List units",
                   description="Returns all geologic units, optionally filtered " 
                               "by rank, hierarchy, a specific point in time or time boundaries (before/after).")
-def get_units(rank: Optional[str] = None,
-              parent_id: Optional[str] = None,
-              at_time: Optional[float] = None,
-              before: Optional[float] = None,
-              after: Optional[float] = None,
+def get_units(rank: str | None = Query(default=None),
+              parent_id: str | None = Query(default=None),
+              at_time: float | None = Query(default=None),
+              min_age_ma: float | None = Query(default=None),
+              max_age_ma: float | None = Query(default=None),
               db: Session = Depends(get_db)):
 
-    query = db.query(ChronostratigraphicUnitDB)
-
-    if at_time is not None and (before is not None or after is not None):
+    if at_time is not None and (min_age_ma is not None or max_age_ma is not None):
         raise HTTPException(
             status_code=400,
-            detail="Cannot combine at_time with before/after"
+            detail="Cannot combine at_time with min_age_ma/max_age_ma"
         )
 
-    if rank not in (None, "", " "):
-        query = query.filter(ChronostratigraphicUnitDB.rank == rank)
+    if min_age_ma is not None and max_age_ma is not None:
+        if min_age_ma >= max_age_ma:
+            raise HTTPException(status_code=400, detail="Invalid range: 'min_age_ma' must be less than 'max_age_ma'")
 
-    if parent_id not in (None, "", " "):
-        query = query.filter(ChronostratigraphicUnitDB.parent_id == parent_id)
+    query = db.query(ChronostratigraphicUnitDB).order_by(
+        ChronostratigraphicUnitDB.begin_time_ma.desc(),
+        ChronostratigraphicUnitDB.rank_order.asc(),
+        ChronostratigraphicUnitDB.id.asc()
+    )
 
-    if at_time not in (None, "", " "):
-        query = query.filter(ChronostratigraphicUnitDB.begin_time_ma > at_time,
-                             ChronostratigraphicUnitDB.end_time_ma <= at_time)
+    if rank is not None:
+        rank = rank.strip()
+        if rank:
+            query = query.filter(ChronostratigraphicUnitDB.rank == rank)
 
-    if before not in (None, "", " "):
-        query = query.filter(ChronostratigraphicUnitDB.end_time_ma > before)
+    if parent_id is not None:
+        parent_id = parent_id.strip()
+        if parent_id:
+            query = query.filter(ChronostratigraphicUnitDB.parent_id == parent_id)
 
-    if after not in (None, "", " "):
-        query = query.filter(ChronostratigraphicUnitDB.begin_time_ma < after)
+    if at_time is not None:
+        query = query.filter(ChronostratigraphicUnitDB.begin_time_ma >= at_time,
+                             ChronostratigraphicUnitDB.end_time_ma < at_time)
 
-    if before is not None and after is not None:
-        if before <= after:
-            raise HTTPException(status_code=400, detail="Invalid range: 'before' must be greater than 'after'")
+    if min_age_ma is not None:
+        query = query.filter(ChronostratigraphicUnitDB.end_time_ma >= min_age_ma)
+
+    if max_age_ma is not None:
+        query = query.filter(ChronostratigraphicUnitDB.begin_time_ma <= max_age_ma)
 
     return query.all()
 
@@ -107,7 +143,7 @@ def get_unit_description(unit_id: str, db: Session = Depends(get_db)):
 
 @units_router.get(path="/{unit_id}/child_units",
                   tags=[TAG_UNITS_READ],
-                  response_model=List[ChronostratigraphicUnitRead],
+                  response_model=list[ChronostratigraphicUnitRead],
                   summary="Get child units",
                   description="Returns all lower-level geologic subdivisions (e.g. Era → Periods)")
 def get_child_units(unit_id: str, db: Session = Depends(get_db)):
@@ -147,19 +183,32 @@ def get_unit_path(unit_id: str, db: Session = Depends(get_db)):
         unit.id: unit for unit in units
     }
 
-    path: List[str] = []
+    path: list[str] = []
     current = unit_map.get(unit_id)
 
-    if not current:
+    if current is None:
         raise HTTPException(status_code=404, detail="Unit not found")
 
-    while current:
+    seen = set()
+
+    while current is not None:
+        if current.id in seen:
+            raise HTTPException(status_code=409, detail="Parent hierarchy contains a cycle")
+
+        seen.add(current.id)
         path.append(current.name)
-        current = unit_map.get(current.parent_id)
-        if not current:
+
+        if current.parent_id is None:
             break
 
-    return UnitPath(id=unit_id , name=path[0], path=list(reversed(path)))
+        parent = unit_map.get(current.parent_id)
+
+        if parent is None:
+            raise HTTPException(status_code=409, detail="Parent unit does not exist")
+
+        current = parent
+
+    return UnitPath(id=unit_id, name=path[0], path=list(reversed(path)))
 
 
 @units_router.get(path="/{unit_id}/duration",
@@ -187,14 +236,7 @@ def get_unit_duration(unit_id: str, db: Session = Depends(get_db)):
                    description="Returns newly created unit")
 def create_unit(payload: ChronostratigraphicUnitCreate, db: Session = Depends(get_db)):
 
-    if payload.parent_id:
-        parent = db.get(ChronostratigraphicUnitDB, payload.parent_id)
-
-        if not parent:
-            raise HTTPException(
-                status_code=422,
-                detail="Parent unit does not exist"
-            )
+    validate_parent_relationship(db, payload.id, payload.parent_id)
 
     unit = ChronostratigraphicUnitDB(**payload.model_dump())
     unit.rank_order = Rank(unit.rank).order
@@ -203,7 +245,7 @@ def create_unit(payload: ChronostratigraphicUnitCreate, db: Session = Depends(ge
     try:
         db.commit()
         db.refresh(unit)
-    except (IntegrityError, sqlite3.IntegrityError):
+    except IntegrityError:
         db.rollback()
         raise HTTPException(status_code=409, detail="Unit already exists")
 
@@ -221,6 +263,8 @@ def replace_unit(unit_id: str, payload: ChronostratigraphicUnitReplace, db: Sess
     if not unit:
         raise HTTPException(status_code=404, detail="Unit not found")
 
+    validate_parent_relationship(db, unit_id, payload.parent_id)
+
     new_data = payload.model_dump()
 
     for key, value in new_data.items():
@@ -228,7 +272,12 @@ def replace_unit(unit_id: str, payload: ChronostratigraphicUnitReplace, db: Sess
 
     unit.rank_order = Rank(unit.rank).order
 
-    db.commit()
+    try:
+        db.commit()
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(status_code=409, detail="Database constraint violation")
+
     db.refresh(unit)
 
     return unit
@@ -247,7 +296,19 @@ def update_unit(unit_id: str, payload: ChronostratigraphicUnitUpdate, db: Sessio
     if not unit:
         raise HTTPException(status_code=404, detail="Unit not found")
 
-    update_data= payload.model_dump(exclude_unset=True)
+    update_data = payload.model_dump(exclude_unset=True, mode="json")
+
+    current_data = ChronostratigraphicUnitRead.model_validate(unit).model_dump(exclude={"id", "rank_order"}, mode="json")
+
+    merged_data = {**current_data, **update_data}
+
+    try:
+        ChronostratigraphicUnitBase.model_validate(merged_data)
+    except ValidationError as err:
+        raise HTTPException(status_code=422, detail=err.errors(include_input=False, include_context=False)) from err
+
+    if "parent_id" in update_data:
+        validate_parent_relationship(db, unit_id, update_data["parent_id"])
 
     for key, value in update_data.items():
         setattr(unit, key, value)
@@ -255,7 +316,12 @@ def update_unit(unit_id: str, payload: ChronostratigraphicUnitUpdate, db: Sessio
     if "rank" in update_data:
         unit.rank_order = Rank(unit.rank).order
 
-    db.commit()
+    try:
+        db.commit()
+    except IntegrityError as err:
+        db.rollback()
+        raise HTTPException(status_code=409, detail="Database constraint violation") from err
+
     db.refresh(unit)
 
     return unit
@@ -279,5 +345,3 @@ def delete_unit(unit_id: str, db: Session = Depends(get_db)):
 
     db.delete(unit)
     db.commit()
-
-    return {"deleted_id": unit_id}

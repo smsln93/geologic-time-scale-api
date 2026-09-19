@@ -10,4 +10,4 @@ root_router = APIRouter(tags=["Root"])
                  description="Returns basic information about the Geologic Time Scale API")
 def root() -> Dict:
     return {"name": "Geologic Time Scale API",
-            "docs": "/docs"}
+            "docs": "/geologic-time-scale-api/v1/docs"}
