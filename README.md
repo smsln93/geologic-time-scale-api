@@ -137,7 +137,7 @@ The project uses pytest to ensure correctness of API behavior, data processing, 
 
 - geological time calculations and data consistency
 - REST API endpoints (units, exports)
-- CSV export validation
+- CSV and JSON export validation
 - general application behavior
 
 ### Run tests
@@ -187,7 +187,7 @@ It is intended for local development and testing purposes only.
 ### Usage
 
 ```bash
-python -m scripts.rebuilt_database --db-url sqlite:///./scripts/test.db 
+python -m scripts.rebuilt_database --db-path sqlite:///./scripts/test.db 
 ````
 **Warning**
 This script will overwrite existing data.
@@ -215,10 +215,10 @@ Optional filters:
 ```
 GET /units?rank=Period&parent_id=pharenozoic
 GET /units?at_time=100
-GET /units?before=250&after=100
+GET /units?min_age_ma=160&max_age_ma=170
 
-Filters `before` and `after` use strict inequalities (<, >).
-Values equal to the boundary are excluded.
+Filters min_age_ma and max_age_ma use inclusive comparisons (>= and <=). 
+When both are provided, only units entirely contained within the specified age range are returned.
 
 ```
 ### Get unit by ID (public)
@@ -235,11 +235,18 @@ To use secure endpoints (POST, PUT, PATCH, DELETE), you must define an API key i
 ```dotenv
 API_KEY=your_secret_api_key
 ```
-Without API key configured, write operations will not be available or will be rejected by the server (HTTP 403).
-Remember to include the key in request headers:
+If the API key is not configured on the server, write operations return HTTP 503 Service Unavailable.
+
+Write operations require an API key provided in the X-API-Key request header:
 ```bash
 X-API-Key: your_secret_api_key
 ```
+
+Authentication errors:
+
+401 Unauthorized – API key is missing from the request.
+403 Forbidden – Invalid API key.
+503 Service Unavailable – API key is not configured on the server.
 
 ### Create unit (requires API key)
 ```
@@ -252,7 +259,6 @@ Body:
 "id": "jurassic",
 "name": "Jurassic",
 "rank": "Period",
-"rank_order": 4,
 "parent_id": "mesozoic",
 "begin_time_ma": 201.3,
 "begin_uncertainty_ma": 0.2,
@@ -269,10 +275,9 @@ Headers:
   X-API-Key: your_api_key
 Body:
 {
-  "id": "jurassic"
+  "id": "jurassic",
   "name": "Jurassic",
   "rank": "Period",
-  "rank_order": 4,
   "parent_id": "mesozoic",
   "begin_time_ma": 201.3,
   "begin_uncertainty_ma": 0.2,
@@ -304,17 +309,6 @@ GET /export/csv
 GET /export/json
 ```
 Exported files are generated and stored in the `/exports` directory.
-
----
-
-## Roadmap / TODO
-
-- [x] Add full CRUD endpoints for chronostratigraphic units
-- [x] Extend input JSON dataset with additional chronostratigraphic units
-- [x] Implement automated tests (unit and integration)
-- [x] Add working script that will be used to initialize the database with predefined data
-- [x] Add Docker support for containerized deployment
-- [ ] Introduce `pyproject.toml` for project configuration and dependency management
 
 ---
 
